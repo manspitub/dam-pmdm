@@ -8,6 +8,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DemoMaterialModule} from './app/material-module';
 
 import {AlumnosList} from './app/alumnos-list';
+import { ToolbarOverviewExample } from './app/toolbar';
 
 @NgModule({
   imports: [
@@ -19,14 +20,14 @@ import {AlumnosList} from './app/alumnos-list';
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [AlumnosList, ToolbarOverviewExample],
-  declarations: [AlumnosList],
-  bootstrap: [AlumnosList]
+  entryComponents: [AlumnosList, [ToolbarOverviewExample]], 
+  declarations: [AlumnosList, [ToolbarOverviewExample]], 
+  bootstrap: [AlumnosList, [ToolbarOverviewExample]]
 })
 export class AppModule {}
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+.catch(err => console.error(err));
 
 
 /**  Copyright 2021 Google LLC. All Rights Reserved.
