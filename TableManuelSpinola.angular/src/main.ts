@@ -7,7 +7,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DemoMaterialModule} from './app/material-module';
 
-import {TableBasicExample} from './app/table-basic-example';
+import {AlumnosList} from './app/alumnos-list';
 
 @NgModule({
   imports: [
@@ -19,9 +19,9 @@ import {TableBasicExample} from './app/table-basic-example';
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [TableBasicExample],
-  declarations: [TableBasicExample],
-  bootstrap: [TableBasicExample]
+  entryComponents: [AlumnosList, ToolbarOverviewExample],
+  declarations: [AlumnosList],
+  bootstrap: [AlumnosList]
 })
 export class AppModule {}
 
