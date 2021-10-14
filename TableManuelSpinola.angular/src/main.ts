@@ -1,33 +1,12 @@
-import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DemoMaterialModule} from './app/material-module';
 
-import {AlumnosList} from './app/alumnos-list';
-import { ToolbarOverviewExample } from './app/toolbar';
+import './polyfills';
 
-@NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    DemoMaterialModule,
-    MatNativeDateModule,
-    ReactiveFormsModule,
-  ],
-  entryComponents: [AlumnosList, [ToolbarOverviewExample]], 
-  declarations: [AlumnosList, [ToolbarOverviewExample]], 
-  bootstrap: [AlumnosList, [ToolbarOverviewExample]]
-})
-export class AppModule {}
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-.catch(err => console.error(err));
+import { AppModule } from './app/alumnos.module';
+
+
 
 
 /**  Copyright 2021 Google LLC. All Rights Reserved.
