@@ -1,22 +1,20 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from "@angular/material/";
 import { Observable, merge } from 'rxjs';'rxjs';
 
 class Alumnos {
   name: string;
-  position: number;
+  position: string;
   apellidos: string;
-  edad: number;
+  edad: string;
   curso: string;
   complete: boolean;
 }
 
 
 
-/**
- * @title Basic use of `<table mat-table>`
- */
+
 @Component({
   selector: 'alumnos-list',
   styleUrls: ['./alumnos-list.css'],
@@ -27,17 +25,17 @@ export class AlumnosList implements AfterViewInit{
 
   
     const alumnos: Alumnos[] = [
-    {position: 1, name: 'Manuel', apellidos: "Spínola Tubío", edad: 20, curso: "2ºDAM", complete: false},
-    {position: 2, name: 'Arturo', apellidos: "Pérez Reverte", edad: 34, curso: "2ºDAM", complete: false},
-    {position: 3, name: 'Cristiano', apellidos: "Ronaldo Junior", edad: 45, curso: "2ºDAM", complete: false},
-    {position: 4, name: 'Pepe', apellidos: "Chamizo, Guzmán", edad: 59, curso: "2ºDAM", complete: false},
-    {position: 5, name: 'John', apellidos: "Doe", edad: 55, curso: "2ºDAM", complete: false},
-    {position: 6, name: 'Jane', apellidos: "Doe Mayweather", edad: 23, curso: "2ºDAM", complete: false},
-    {position: 7, name: 'Pep', apellidos: "Guardiola I Salas", edad: 27, curso: "2ºDAM", complete: false},
-    {position: 8, name: 'María', apellidos: "De la hoz", edad: 40, curso: "2ºDAM", complete: false},
-    {position: 9, name: 'Antonio José', apellidos: "Carrasco", edad: 67, curso: "2ºDAM", complete: false},
-    {position: 10, name: 'David', apellidos: "Otero García", edad: 9, curso: "2ºDAM", complete: false}];
-   this.dateSource = new MatTableDataSource(alumnos);
+    {position: '1', name: 'Manuel', apellidos: "Spínola Tubío", edad: '20', curso: "2ºDAM", complete: false},
+    {position: '2', name: 'Arturo', apellidos: "Pérez Reverte", edad: '34', curso: "2ºDAM", complete: false},
+    {position: '3', name: 'Cristiano', apellidos: "Ronaldo Junior", edad: '45', curso: "2ºDAM", complete: false},
+    {position: '4', name: 'Pepe', apellidos: "Chamizo, Guzmán", edad: '59', curso: "2ºDAM", complete: false},
+    {position: '5', name: 'John', apellidos: "Doe", edad: '55', curso: "2ºDAM", complete: false},
+    {position: '6', name: 'Jane', apellidos: "Doe Mayweather", edad: '23', curso: "2ºDAM", complete: false},
+    {position: '7', name: 'Pep', apellidos: "Guardiola I Salas", edad: '27', curso: "2ºDAM", complete: false},
+    {position: '8', name: 'María', apellidos: "De la hoz", edad: '40', curso: "2ºDAM", complete: false},
+    {position: '9', name: 'Antonio José', apellidos: "Carrasco", edad: '67', curso: "2ºDAM", complete: false},
+    {position: '10', name: 'David', apellidos: "Otero García", edad: '9', curso: "2ºDAM", complete: false}];
+    this.dataSource = new MatTableDataSource(alumnos);
     }
   //displayedColumns: string[] = ['position', 'name', 'apellidos', 'edad', 'curso'];
   form:FormGroup = new FormGroup({
@@ -58,21 +56,21 @@ export class AlumnosList implements AfterViewInit{
   columns: string[];
 
   columnDefinitions = [
-    { def: 'position', label: 'Position', hide: this.position?.value},
-    { def: 'name', label: 'Name', hide: this.name?.value},
-    { def: 'apellidos', label: 'Apellidos', hide: this.apellidos?.value},
-    { def: 'edad', label: 'Edad', hide: this.edad?.value},
-    { def: 'curso', label: 'Curso', hide: this.curso?.value}
+    { def: 'position', label: 'Position', hide: this.position.value},
+    { def: 'name', label: 'Name', hide: this.name.value},
+    { def: 'apellidos', label: 'Apellidos', hide: this.apellidos.value},
+    { def: 'edad', label: 'Edad', hide: this.edad.value},
+    { def: 'curso', label: 'Curso', hide: this.curso.value}
   ]
 
   getDisplayedColumns() {
     this.columns = this.columnDefinitions.filter(cd=>!cd.hide).map(cd=>cd.def);
   }
 
-  dateSource: MatTableDataSource<Alumnos>
+  dataSource: MatTableDataSource<Alumnos>;
 
   ngAfterViewInit() {
-    let o1:Observable<boolean> = this.position?.valueChanges;
+    let o1:Observable<boolean> = this.position.valueChanges;
     let o2:Observable<boolean> = this.name?.valueChanges;
     let o3:Observable<boolean> = this.apellidos?.valueChanges;
     let o4:Observable<boolean> = this.edad?.valueChanges;
