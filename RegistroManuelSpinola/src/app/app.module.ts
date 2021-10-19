@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 import { MaterialImportsModule } from './modules/material-imports.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
