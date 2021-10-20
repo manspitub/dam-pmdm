@@ -22,7 +22,7 @@ export class AuthService {
 
 
   register(signUpDto: AuthSignUpDto): Observable<AuthSignUpResponse>{
-    let requestUrl = `${this.authBaseUrl}/login`;
+    let requestUrl = `${this.authBaseUrl}/signUp`;
     return this.http.post<AuthSignUpResponse>(requestUrl, signUpDto, DEFAULT_HEADERS);
 }
 
