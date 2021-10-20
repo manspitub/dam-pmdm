@@ -1,1 +1,22 @@
-<p>register works!</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>username</mat-label>
+        <input matInput placeholder="Write your email for your username" [(ngModel)]="signUpDto.username"
+            name="username">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Write your email for your username" [(ngModel)]="signUpDto.email" name="email">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Write your password" type="password" [(ngModel)]="signUpDto.password"
+            name="password">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>The Code</mat-label>
+        <input matInput placeholder="Write your Code to access" type="text" [(ngModel)]="signUpDto.code"
+            name="password">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="doSignUp()">Sign Up</button>
+</form>

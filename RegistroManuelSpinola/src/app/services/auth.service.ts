@@ -1,10 +1,9 @@
-import { registerLocaleData } from '@angular/common';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { sign } from 'crypto';
 import { Observable, observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthSignUpDto } from '../models/dto/auth.dto';
+import { AuthSignUpResponse } from '../models/interfaces/auth.interface';
 
 const AUTH_BASE_URL = 'auth';
 const DEFAULT_HEADERS = {
@@ -19,11 +18,12 @@ const DEFAULT_HEADERS = {
 export class AuthService {
   authBaseUrl = `${environment.apiBaseUrl}/${AUTH_BASE_URL}`;
 
-  constructor() { }
-}
+  constructor(private http: HttpClient) { }
+
 
   register(signUpDto: AuthSignUpDto): Observable<AuthSignUpResponse>{
-
+    let requestUrl = `${this.authBaseUrl}/login`;
+    return this.http.post<AuthSignUpResponse>(requestUrl, signUpDto, DEFAULT_HEADERS);
 }
 
   forgot() {
