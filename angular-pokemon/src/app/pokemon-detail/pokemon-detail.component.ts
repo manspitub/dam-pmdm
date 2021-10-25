@@ -27,9 +27,14 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getPokemon(id: any) {
-    this.pokemonService.getPokemons(id).subscribe(
+    this.pokemonService.getPokemon(id).subscribe(
       res => {
-        
+        this.pokemon = res;
+        this.pokemonImg = this.pokemon.sprites.front_default;
+        this.pokemonType = res.types[0].type.name;
+      },
+      err => {
+
       }
     )
   }

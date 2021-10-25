@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Pokemon, PokemonListResponse } from '../interfaces/pokemon-list.interface';
 import { PokemonService } from '../services/pokemon.service';
+
 
 @Component({
   selector: 'app-pokemon-list',
@@ -9,27 +12,46 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  pokemonList: Pokemon[] | undefined;
-  pokemonNumberSelected = '50';
+  
+  displayedColumns: string[] = ['position', 'image', 'name'];
+  data: any[] = [];
+  datasource = new MatTableDataSource<any>(this.data);
+  pokemons = [];
+
+  
 
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getPokemons(100);
+    this.getPokemons();
   }
 
-  getPokemons(pokemonLimit: number) {
-    this.pokemonService.getPokemonList(pokemonLimit).subscribe( resultado => {
-      this.pokemonList = resultado.results;
-      console.log(resultado);
-    });
+  getPokemons() {
+
+    let pokemonData;
+
+   for(let i =1; i<= 200; i++{
+     this.pokemonService.getPokemon().subscribe(
+      res => {
+        pokemonData = {
+          position = i,
+          image: res.sprites.front_default,
+          name: res.name
+        };
+        this.data.push(pokemonData)
+        this.datasource = new MatTableDataSource<any>(this.data)
+        console.log(res);
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+   } 
+    
   }
 
-  getPokemonList() {
-    this.pokemonService.getPokemonList(parseInt(this.pokemonNumberSelected)).subscribe( resultado => {
-      this.pokemonList = resultado.results;
-      console.log(resultado);
-    });
+  getRow(row){
+    this.router.navigateByUrl(`pokeDetail/${row.position}`);
   }
 
   

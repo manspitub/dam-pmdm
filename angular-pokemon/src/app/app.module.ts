@@ -14,7 +14,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
     AppComponent,
     PokemonListComponent,
     PokemonItemComponent,
-    PokemonDetailComponent
+    PokemonDetailComponent 
   ],
   imports: [
     BrowserModule,

@@ -1,19 +1,17 @@
 <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{pokemon.name}}</mat-card-title>
-      <mat-card-subtitle>Nº {{pokemon.position}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="getPokemonPhotoUrl(pokemonInput.url)" width="80px" alt="Pokemon">
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{pokemon.name}}</mat-card-title>
+    <mat-card-subtitle>Nº {{pokemon.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{pokemonImg}}" width="80px" alt="Pokemon">
+  <mat-card-content>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip color="primary">Type: {{pokemon.Type}}</mat-chip>
+      <mat-chip color="primary">Heigh: {{pokemon.heigh}}</mat-chip>
+      
+      <mat-chip color="primary" selected>Primary fish</mat-chip>
+      <mat-chip color="accent" selected>Accent fish</mat-chip>
+    </mat-chip-list>
+  </mat-card-content>
