@@ -8,10 +8,11 @@ import { MoviesServiceService } from 'src/app/services/movies-service.service';
   styleUrls: ['./movies-popular-list-component.component.css']
 })
 export class MoviesPopularListComponentComponent implements OnInit {
-
+  movieList: MoviesPopular[] | undefined
+  
   constructor(private movieService: MoviesServiceService) { }
 
-  movieList: MoviesPopular[] | undefined
+  
 
   ngOnInit(): void {
   }

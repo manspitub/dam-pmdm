@@ -4,7 +4,7 @@ import { MoviesPopularListComponentComponent } from '../component/movies-popular
 
 const routes: Routes = [
   {path:'movies-popular', component: MoviesPopularListComponentComponent},
-  {}
+  {path: '**', component: MoviesPopularListComponentComponent}
 ];
 
 @NgModule({
