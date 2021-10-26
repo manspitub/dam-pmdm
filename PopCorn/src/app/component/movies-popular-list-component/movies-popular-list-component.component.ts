@@ -9,9 +9,6 @@ import { MoviesServiceService } from 'src/app/services/movies-service.service';
   styleUrls: ['./movies-popular-list-component.component.css']
 })
 export class MoviesPopularListComponentComponent implements OnInit {
-  displayedColumns: string[] = ['']
-  data: any[] = [];
-  datasource = new MatTableDataSource<any>(this.data);
 
   movieList : Movie[] = [];
   
