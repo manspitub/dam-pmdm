@@ -1,11 +1,5 @@
-.padre {
-    /* IMPORTANTE */
-    text-align: center;
-  }
 
-  .title{
-    background-color: yellow;
-    text-align: left;
-    padding: 50px;
-    margin: 50px;
+  .lista:nth-child(odd){
+    background-color:silver;
+    color: red;
   }

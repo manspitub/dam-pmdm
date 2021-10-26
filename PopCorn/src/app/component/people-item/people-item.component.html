@@ -1,9 +1,9 @@
 <!-- Cards with media area -->
 <mat-card class="example-card">
-    <mat-card-title-group>
-      <mat-card-title>{{popularPeople.name}}</mat-card-title>
-      <mat-card-subtitle>People</mat-card-subtitle>
-      <img mat-card-sm-image src="{{popularPeople.profile_path}}" >
+    <mat-card-title-group class="lista">
+      <mat-card-title class="titulo">{{popularPeople.name}}</mat-card-title>
+      <mat-card-subtitle>{{popularPeople.popularity}} of popularity</mat-card-subtitle>
+      <img mat-card-sm-image src="https://api.themoviedb.org/3/person/{{popularPeople.id}}/images?api_key=6f3f957d9d8dc6a98fed68a333b8209c      " >
     </mat-card-title-group>
     <mat-card-content>
       
