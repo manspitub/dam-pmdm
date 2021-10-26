@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MoviesPopular } from 'src/app/interface/movie-list.interface';
+import { Movie } from 'src/app/interface/movie-list.interface';
+
 
 @Component({
   selector: 'app-movies-item-component',
@@ -7,7 +8,8 @@ import { MoviesPopular } from 'src/app/interface/movie-list.interface';
   styleUrls: ['./movies-item-component.component.css']
 })
 export class MoviesItemComponentComponent implements OnInit {
-  @Input() movieInput: MoviesPopular | undefined;
+  
+  @Input() movie!: Movie;
   i:number = 0;
   constructor() { }
 

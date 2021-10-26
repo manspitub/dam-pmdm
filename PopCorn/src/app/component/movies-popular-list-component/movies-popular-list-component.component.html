@@ -1,1 +1,1 @@
-<button mat-stroked-button (click)="getMoviesPopular()">Pelis</button>
+<app-movies-item-component *ngFor= "let movie of movieList" [movie]="movie"></app-movies-item-component>

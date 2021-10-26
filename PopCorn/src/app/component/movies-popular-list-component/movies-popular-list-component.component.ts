@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesPopular } from 'src/app/interface/movie-list.interface';
+import { MatTableDataSource } from '@angular/material/table';
+import { Movie } from 'src/app/interface/movie-list.interface';
 import { MoviesServiceService } from 'src/app/services/movies-service.service';
 
 @Component({
@@ -8,20 +9,22 @@ import { MoviesServiceService } from 'src/app/services/movies-service.service';
   styleUrls: ['./movies-popular-list-component.component.css']
 })
 export class MoviesPopularListComponentComponent implements OnInit {
-  movieList: MoviesPopular[] | undefined
+  displayedColumns: string[] = ['']
+  data: any[] = [];
+  datasource = new MatTableDataSource<any>(this.data);
+
+  movieList : Movie[] = [];
   
   constructor(private movieService: MoviesServiceService) { }
 
   
 
   ngOnInit(): void {
+    this.movieService.getPopularMovieList().subscribe(result => {
+      this.movieList = result.results;
+    });
   }
 
-  getMoviesPopular(){
-    this.movieService.getPopularMovieList().subscribe( resultado => {
-      this.movieList = resultado.results;
-      console.log(resultado);
-    })
-  }
+  
 
 }

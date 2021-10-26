@@ -1,0 +1,13 @@
+.padre {
+    /* IMPORTANTE */
+    text-align: center;
+  }
+
+  .title{
+    background-color: yellow;
+    text-align: left;
+    padding: 50px;
+    margin: 50px;
+  }
+  
+ 
