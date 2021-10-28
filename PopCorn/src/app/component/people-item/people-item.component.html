@@ -3,9 +3,9 @@
     <mat-card-title-group class="lista">
       <mat-card-title class="titulo">{{popularPeople.name}}</mat-card-title>
       <mat-card-subtitle>{{popularPeople.popularity}} of popularity</mat-card-subtitle>
-      <img mat-card-sm-image src="https://api.themoviedb.org/3/person/{{popularPeople.id}}/images?api_key=6f3f957d9d8dc6a98fed68a333b8209c      " >
+      <img mat-card-sm-image [src]="getPeopleImageUrl(popularPeople)"  >
     </mat-card-title-group>
     <mat-card-content>
-      
+
     </mat-card-content>
   </mat-card>

@@ -19,4 +19,5 @@ export class PopularPeopleComponent implements OnInit {
     })
   }
 
+
 }
