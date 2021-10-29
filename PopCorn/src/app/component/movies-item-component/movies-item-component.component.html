@@ -1,5 +1,5 @@
-<div class="padre">  
-    <div class="title"><b>Title:</b> {{movie.title}}   
-    <b>Original Title: </b>{{movie.original_title}}</div>
-</div>
-  
+<div class="padre">
+    <div class="title"><b>Title:</b> {{movieInput.title}}
+    <b>Original Title: </b>{{movieInput.original_title}}</div>
+    <img [src]="getMovieImageUrl(movieInput)" alt="Peli" height="200px" width="200px">
+    <button (click)="openMovieDetailDialog()" mat-flat-button color="primary">Primary</button></div>

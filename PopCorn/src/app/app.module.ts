@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialImportsModule } from './modules/material-imports.module';
 import { PopularPeopleComponent } from './component/popular-people/popular-people.component';
 import { PeopleItemComponent } from './component/people-item/people-item.component';
+import { MovieDetailComponent } from './dialogs/movie-detail/movie-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +19,22 @@ import { PeopleItemComponent } from './component/people-item/people-item.compone
     MoviesItemComponentComponent,
     PopularPeopleComponent,
     PeopleItemComponent,
+    MovieDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     HttpClientModule,
     MaterialImportsModule
   ],
+
+  entryComponents:[
+    MovieDetailComponent
+  ],
+
+
+
   providers: [],
   bootstrap: [AppComponent]
 })
