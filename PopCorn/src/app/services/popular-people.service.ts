@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PersonResponse } from '../interface/person-details.interface';
 import { PopularPeopleResponse } from '../interface/popular-people';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
@@ -17,4 +18,9 @@ export class PopularPeopleService {
   getPopularPeopleList(): Observable<PopularPeopleResponse>{
     return this.http.get<PopularPeopleResponse>(`${API_BASE_URL}/person/popular?api_key=${api_key}`)
   }
+
+  getPerson(id: number ): Observable<PersonResponse>{
+    return this.http.get<PersonResponse>(`${API_BASE_URL}person/${id}?api_key=${api_key}`)
+  }
+
 }

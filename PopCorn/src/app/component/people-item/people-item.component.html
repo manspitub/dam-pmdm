@@ -4,6 +4,9 @@
       <mat-card-title class="titulo">{{popularPeople.name}}</mat-card-title>
       <mat-card-subtitle>{{popularPeople.popularity}} of popularity</mat-card-subtitle>
       <img mat-card-sm-image [src]="getPeopleImageUrl(popularPeople)"  >
+      <a [routerLink]="['/people-details', popularPeople.id]">
+        <span class="badge"></span>{{ popularPeople.name }}
+      </a>
     </mat-card-title-group>
     <mat-card-content>
 

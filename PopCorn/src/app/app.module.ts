@@ -11,6 +11,7 @@ import { MaterialImportsModule } from './modules/material-imports.module';
 import { PopularPeopleComponent } from './component/popular-people/popular-people.component';
 import { PeopleItemComponent } from './component/people-item/people-item.component';
 import { MovieDetailComponent } from './dialogs/movie-detail/movie-detail.component';
+import { PeopleDetailsComponent } from './component/people-details/people-details.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MovieDetailComponent } from './dialogs/movie-detail/movie-detail.compon
     PopularPeopleComponent,
     PeopleItemComponent,
     MovieDetailComponent,
+    PeopleDetailsComponent,
   ],
   imports: [
     BrowserModule,
