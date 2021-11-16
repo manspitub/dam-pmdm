@@ -7,14 +7,14 @@
         </mat-card-header>
         <div style="text-align: center; border-radius: 20px;"><img  [src]="getMovieImageUrl(movieInput)" width="200px"></div>
 
-        <mat-card-content>
+        <mat-card-content class="texto">
           <mat-card-title>{{movieInput.title}} </mat-card-title>
           <mat-card-subtitle>{{movieInput.overview}}</mat-card-subtitle>
           <p>
             The Himalayas is a mountain range in Asia.
           </p>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions fxLayoutGap=" grid">
           <circle-progress
   [percent]= movieInput.vote_average
   [radius]="60"
@@ -25,7 +25,11 @@
   [animation]="true"
   [animationDuration]="300"
 ></circle-progress>
-          <button mat-button>SHARE</button>
+
+          <button mat-button><mat-icon>thumb_up</mat-icon>
+          </button>
+
+          <button mat-button><mat-icon>list</mat-icon></button>
         </mat-card-actions>
       </mat-card>
     </div>
