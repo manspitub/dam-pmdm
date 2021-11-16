@@ -12,6 +12,9 @@ import { PopularPeopleComponent } from './component/popular-people/popular-peopl
 import { PeopleItemComponent } from './component/people-item/people-item.component';
 import { MovieDetailComponent } from './dialogs/movie-detail/movie-detail.component';
 import { PeopleDetailsComponent } from './component/people-details/people-details.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { animation } from '@angular/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,16 @@ import { PeopleDetailsComponent } from './component/people-details/people-detail
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialImportsModule
+    MaterialImportsModule,
+    NgCircleProgressModule.forRoot({
+      radius:100,
+      outerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+      backgroundColor: "#96989A"
+    }),
+    FlexLayoutModule
   ],
 
   entryComponents:[

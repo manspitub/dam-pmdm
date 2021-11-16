@@ -1,13 +1,13 @@
-.padre {
-    /* IMPORTANTE */
-    text-align: center;
-  }
+mat-toolbar {
+  justify-content: space-between;
+}
 
-  .title{
-    background-color: yellow;
-    text-align: left;
-    padding: 50px;
-    margin: 50px;
-  }
-  
- 
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  margin-bottom: 16px;
+}
+
+

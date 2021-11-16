@@ -1,5 +1,33 @@
-<div class="padre">
-    <div class="title"><b>Title:</b> {{movieInput.title}}
-    <b>Original Title: </b>{{movieInput.original_title}}</div>
-    <img [src]="getMovieImageUrl(movieInput)" alt="Peli" height="200px" width="200px">
-    <button (click)="openMovieDetailDialog()" mat-flat-button color="primary">Primary</button></div>
+
+<div class="content">
+  <div>
+    <div>
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+        </mat-card-header>
+        <div style="text-align: center; border-radius: 20px;"><img  [src]="getMovieImageUrl(movieInput)" width="200px"></div>
+
+        <mat-card-content>
+          <mat-card-title>{{movieInput.title}} </mat-card-title>
+          <mat-card-subtitle>{{movieInput.overview}}</mat-card-subtitle>
+          <p>
+            The Himalayas is a mountain range in Asia.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <circle-progress
+  [percent]= movieInput.vote_average
+  [radius]="60"
+  [outerStrokeWidth]="16"
+  [innerStrokeWidth]="8"
+  [outerStrokeColor]="'#78C000'"
+  [innerStrokeColor]="'#C7E596'"
+  [animation]="true"
+  [animationDuration]="300"
+></circle-progress>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

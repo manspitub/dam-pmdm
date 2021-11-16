@@ -11,10 +11,10 @@ import { MoviesServiceService } from 'src/app/services/movies-service.service';
 export class MoviesPopularListComponentComponent implements OnInit {
 
   movieList : Movie[] = [];
-  
+
   constructor(private movieService: MoviesServiceService) { }
 
-  
+
 
   ngOnInit(): void {
     this.movieService.getPopularMovieList().subscribe(result => {
@@ -22,6 +22,6 @@ export class MoviesPopularListComponentComponent implements OnInit {
     });
   }
 
-  
+
 
 }

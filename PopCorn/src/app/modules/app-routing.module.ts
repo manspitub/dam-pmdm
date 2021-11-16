@@ -7,7 +7,7 @@ import { PopularPeopleComponent } from '../component/popular-people/popular-peop
 const routes: Routes = [
   {path:'movies-popular', component: MoviesPopularListComponentComponent},
   {path:'people-popular', component: PopularPeopleComponent},
-  {path:'people-details [popularPople.id]', component: PeopleDetailsComponent }
+  {path:'people-details', component: PeopleDetailsComponent }
 ];
 
 @NgModule({

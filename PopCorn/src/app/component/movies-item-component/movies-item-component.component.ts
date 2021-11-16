@@ -16,6 +16,12 @@ export class MoviesItemComponentComponent implements OnInit {
   @Input() movie: MovieResponse | undefined;
   @Input() movieInput!: Movie;
   i:number = 0;
+  title = 'Card View'
+  gridColumns = 3;
+
+  toggleGridColumns(){
+    this.gridColumns = this.gridColumns === 3 ? 4 : 3;
+  }
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -31,6 +37,8 @@ export class MoviesItemComponentComponent implements OnInit {
       width:'500px',
       data: {id: this.movieInput?.id}
     })
+
+
 
 
 

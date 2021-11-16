@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { PersonResponse } from 'src/app/interface/person-details.interface';
 import { PopularPeople } from 'src/app/interface/popular-people';
 import { PopularPeopleService } from 'src/app/services/popular-people.service';
 import { environment } from 'src/environments/environment';
+import { PeopleItemComponent } from '../people-item/people-item.component';
 
 @Component({
   selector: 'app-people-details',
@@ -10,12 +11,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./people-details.component.css']
 })
 export class PeopleDetailsComponent implements OnInit {
-  @Input() person!: PersonResponse 
+  @Input() person!: PersonResponse
   @Input() personInput!: PopularPeople;
- 
-  
 
-  constructor(private peopleService: PopularPeopleService) { }
+
+
+  constructor(@Inject (PeopleItemComponent) private peopleService: PopularPeopleService, private peopleItem: PeopleItemComponent) { }
 
   ngOnInit(): void {
     console.log(this.person?.id)
