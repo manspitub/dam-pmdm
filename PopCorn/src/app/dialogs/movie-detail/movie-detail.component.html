@@ -1,12 +1,9 @@
 <ng-container *ngIf="movie">
-  <h1 mat-dialog-title>Movie Detail</h1>
+  <h1 mat-dialog-title>Quieres añadir esta película a tu lista?</h1>
   <div mat-dialog-content>
 
-      <img [src]="getMovieImageUrl(movie)" width="350px" />
-
-
-     <p class="id"><b>{{movie.id}}</b></p>
-      <p class="title"><b>{{movie.title}}</b></p>
+      <button class="btn btn-success" (click)="salvarNuevaPeli()">yes</button>
+      <button type="button" class="close" (click)="cancel()" data-dismiss="modal" aria-hidden="true">No</button>
 
 
   </div>

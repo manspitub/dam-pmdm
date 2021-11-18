@@ -1,17 +1,19 @@
 import { Component, NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { MoviesPopularListComponentComponent } from '../component/movies-popular-list-component/movies-popular-list-component.component';
 import { PeopleDetailsComponent } from '../component/people-details/people-details.component';
 import { PopularPeopleComponent } from '../component/popular-people/popular-people.component';
+import { MovieDetailComponent } from '../dialogs/movie-detail/movie-detail.component';
 
 const routes: Routes = [
   {path:'movies-popular', component: MoviesPopularListComponentComponent},
   {path:'people-popular', component: PopularPeopleComponent},
-  {path:'people-details', component: PeopleDetailsComponent }
+  {path:'people-details', component: PeopleDetailsComponent },
+  {path: 'movie-details', component: MovieDetailComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

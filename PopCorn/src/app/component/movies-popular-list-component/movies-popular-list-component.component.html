@@ -1,3 +1,3 @@
-<div fxLayout="row wrap" fxLayoutGap="35px grid" class="scroll-container">
-<app-movies-item-component class="movie-item" *ngFor= "let movie of movieList" [movieInput]="movie"></app-movies-item-component>
+<div fxLayout="row wrap" fxLayoutGap="20px grid" fxFlexFill fxLayoutAlign="start start" class="scroll-container">
+<app-movies-item-component fxFlex="20" class="movie-item" *ngFor= "let movie of movieList" [movieInput]="movie"></app-movies-item-component>
 </div>

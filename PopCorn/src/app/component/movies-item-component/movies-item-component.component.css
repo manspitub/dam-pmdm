@@ -4,16 +4,57 @@ mat-toolbar {
 
 .content {
   padding: 16px;
-  width: 300px;
+  width: 350px;
   white-space: nowrap;
-  text-overflow: ellipsis;
+
    overflow: hidden;
 }
+
+.movie-rate{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.movie-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  font-weight: bold;
+  margin: 2;
+  font-size: 1.5em;
+}
+
+.movie-overview{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+  }
 
 
 
 .content > mat-card {
   margin-bottom: 16px;
+}
+
+
+
+.movie-image{
+  width: 100%;
+  transition: transform .5s ease;
+  overflow: hidden;
+
+}
+
+.movie-image:hover{
+  transform: scale(1.1, 1.05);
+  transition: transform .5s ease;
+}
+
+.movie-rate{
+  align-content: flex-start;
 }
 
 

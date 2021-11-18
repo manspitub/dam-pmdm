@@ -33,12 +33,22 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HttpClientModule,
     MaterialImportsModule,
     NgCircleProgressModule.forRoot({
-      radius:100,
-      outerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300,
-      backgroundColor: "#96989A"
+      "radius": 25,
+      "outerStrokeGradient": true,
+      "outerStrokeWidth": 5,
+      "outerStrokeColor": "#4882c2",
+      "outerStrokeGradientStopColor": "#53a9ff",
+      "innerStrokeWidth": 0,
+      "title": "Rate",
+      "titleColor": "#FFFFFF",
+      "titleFontSize": "15",
+      "titleFontWeight": "bold",
+      "showSubtitle": false,
+      "animateTitle": true,
+      "animationDuration": 1000,
+      "showUnits": false,
+      "showBackground": true,
+      "backgroundColor": "#000000"
     }),
     FlexLayoutModule
   ],

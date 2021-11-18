@@ -1,35 +1,38 @@
-
 <div class="content">
   <div>
     <div>
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
-        </mat-card-header>
-        <div style="text-align: center; border-radius: 20px;"><img  [src]="getMovieImageUrl(movieInput)" width="200px"></div>
+          <div style="text-align: center; border-radius: 20px">
+            <img
+              class="movie-image"
+              style="border-radius: 20px; overflow: hidden; width: 100%"
+              [src]="getMovieImageUrl(movieInput)"
+              width="200px"
+            />
+          </div>
+          <circle-progress
+            class="movie-rate"
+            [percent]="movieInput.vote_average * 10"
+            [title]="(movieInput.vote_average * 10).toString()+'%'" [radius]="20"
 
-        <mat-card-content class="texto">
-          <mat-card-title>{{movieInput.title}} </mat-card-title>
-          <mat-card-subtitle>{{movieInput.overview}}</mat-card-subtitle>
-          <p>
-            The Himalayas is a mountain range in Asia.
-          </p>
+          ></circle-progress>
+        </mat-card-header>
+        <a [routerLink]="['/movie-detail', movieInput.id]"></a>
+
+        <mat-card-content>
+          <mat-card-title class="movie-title"
+            >{{ movieInput.title }}
+          </mat-card-title>
+          <mat-card-subtitle class="movie-overview">{{
+            movieInput.overview
+          }}</mat-card-subtitle>
         </mat-card-content>
         <mat-card-actions fxLayoutGap=" grid">
-          <circle-progress
-  [percent]= movieInput.vote_average
-  [radius]="60"
-  [outerStrokeWidth]="16"
-  [innerStrokeWidth]="8"
-  [outerStrokeColor]="'#78C000'"
-  [innerStrokeColor]="'#C7E596'"
-  [animation]="true"
-  [animationDuration]="300"
-></circle-progress>
+          <button mat-button><mat-icon>thumb_up</mat-icon></button>
 
-          <button mat-button><mat-icon>thumb_up</mat-icon>
-          </button>
+          <button mat-button (click)="getReceiver"><mat-icon>list</mat-icon></button>
 
-          <button mat-button><mat-icon>list</mat-icon></button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -1,5 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { MoviesItemComponentComponent } from 'src/app/component/movies-item-component/movies-item-component.component';
 import { MovieResponse } from 'src/app/interface/movie-details.interface';
 import { Movie, MoviesPopularResponse } from 'src/app/interface/movie-list.interface';
 import { MoviesServiceService } from 'src/app/services/movies-service.service';
@@ -18,15 +20,13 @@ export class MovieDetailComponent implements OnInit {
 
   movie!: MovieResponse
   movieInput!: Movie
+  movieOutput: MoviesItemComponentComponent | undefined
+
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: DialogMovieDetailData,
-  private movieService: MoviesServiceService) { }
+  private movieService: MoviesServiceService, private router:Router) { }
 
   ngOnInit(): void {
-  console.log(this.data.id)
-      this.movieService.getMovie(this.data.id).subscribe(movieResult=> {
-        this.movie = movieResult;
-      });
 
   }
 
@@ -36,4 +36,9 @@ export class MovieDetailComponent implements OnInit {
 
 
 
-}
+
+  }
+
+
+
+

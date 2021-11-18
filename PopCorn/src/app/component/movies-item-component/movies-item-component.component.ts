@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailComponent } from 'src/app/dialogs/movie-detail/movie-detail.component';
 import { MovieResponse } from 'src/app/interface/movie-details.interface';
 import { Movie } from 'src/app/interface/movie-list.interface';
+import { MoviesServiceService } from 'src/app/services/movies-service.service';
 import { environment } from 'src/environments/environment';
+
 
 
 @Component({
@@ -16,13 +18,10 @@ export class MoviesItemComponentComponent implements OnInit {
   @Input() movie: MovieResponse | undefined;
   @Input() movieInput!: Movie;
   i:number = 0;
-  title = 'Card View'
-  gridColumns = 3;
 
-  toggleGridColumns(){
-    this.gridColumns = this.gridColumns === 3 ? 4 : 3;
-  }
-  constructor(private dialog: MatDialog) { }
+
+
+  constructor(private dialog: MatDialog, private movieService:MoviesServiceService) { }
 
   ngOnInit(): void {
   }
@@ -38,6 +37,11 @@ export class MoviesItemComponentComponent implements OnInit {
       data: {id: this.movieInput?.id}
     })
 
+    
+
+
+
+
 
 
 
@@ -47,3 +51,5 @@ export class MoviesItemComponentComponent implements OnInit {
 
 
 }
+
+
