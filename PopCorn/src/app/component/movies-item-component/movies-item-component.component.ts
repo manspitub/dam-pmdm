@@ -3,8 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MovieDetailComponent } from 'src/app/dialogs/movie-detail/movie-detail.component';
 import { MovieResponse } from 'src/app/interface/movie-details.interface';
 import { Movie } from 'src/app/interface/movie-list.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { MoviesServiceService } from 'src/app/services/movies-service.service';
 import { environment } from 'src/environments/environment';
+import { DialogAddMovieToPlaylistComponent } from '../dialogs/dialog-add-movie-to-playlist/dialog-add-movie-to-playlist.component';
+import { LoginDialogComponent } from '../dialogs/login-dialog/login-dialog.component';
 
 
 
@@ -21,7 +24,7 @@ export class MoviesItemComponentComponent implements OnInit {
 
 
 
-  constructor(private dialog: MatDialog, private movieService:MoviesServiceService) { }
+  constructor(private dialog: MatDialog, private movieService:MoviesServiceService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -36,17 +39,48 @@ export class MoviesItemComponentComponent implements OnInit {
       width:'500px',
       data: {id: this.movieInput?.id}
     })
-
-    
-
-
-
-
-
-
-
-
   }
+
+    addFavorite() {
+      if(this.authService.isLoggedIn()) {
+        //TODO añadir el movieInput a favoritos
+      } else {
+        this.openLoginDialog();
+      }
+    }
+
+    addToPlayList() {
+      if(this.authService.isLoggedIn()) {
+        this.openPlaylistAddDialog();
+      } else {
+        this.openLoginDialog();
+      }
+    }
+
+    openLoginDialog() {
+      this.dialog.open(LoginDialogComponent, {
+        width: '400px',
+        disableClose: true
+      });
+    }
+
+    openPlaylistAddDialog() {
+      this.dialog.open(DialogAddMovieToPlaylistComponent, {
+        width: '400px',
+        disableClose: true
+      })
+      }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

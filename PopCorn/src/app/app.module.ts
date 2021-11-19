@@ -15,6 +15,9 @@ import { PeopleDetailsComponent } from './component/people-details/people-detail
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { animation } from '@angular/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginDialogComponent } from './component/dialogs/login-dialog/login-dialog.component';
+import { SessionComponent } from './component/session/session.component';
+import { DialogAddMovieToPlaylistComponent } from './component/dialogs/dialog-add-movie-to-playlist/dialog-add-movie-to-playlist.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     PeopleItemComponent,
     MovieDetailComponent,
     PeopleDetailsComponent,
+    LoginDialogComponent,
+    SessionComponent,
+    DialogAddMovieToPlaylistComponent,
   ],
   imports: [
     BrowserModule,
