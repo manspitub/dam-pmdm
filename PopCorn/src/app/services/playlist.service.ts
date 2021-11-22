@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddMovieToListDto } from '../dto/addMovieToList.dto';
 import { CreatedListDto } from '../dto/createdList.dto';
-import { AddToListResponse, CreateListResponse } from '../interface/list.interface';
+import { AddToListResponse, CreateListResponse, PlaylistResponse } from '../interface/list.interface';
 
 
 const DEFAULT_HEADERS = {
@@ -27,6 +27,10 @@ export class PlaylistService {
 
   addToList(addMovie: AddMovieToListDto, listId: number): Observable<AddToListResponse>{
     return this.http.post<AddToListResponse>(`https://api.themoviedb.org/3/list/${listId}/add_item?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, addMovie)
+  }
+
+  getPlaylistDetails(listId: number): Observable<PlaylistResponse>{
+    return this.http.get<PlaylistResponse>(`https://api.themoviedb.org/3/list/${listId}?api_key=${environment.apiKey}&language=${environment.lang}}`)
   }
 
 

@@ -19,7 +19,7 @@ export interface DialogMovieListData{
 export class DialogAddMovieToPlaylistComponent implements OnInit {
 
   addMovieToList= new AddMovieToListDto;
-  listas !: CreateListResponse[];
+  listas : CreateListResponse[] = [];
   movies !: Movie[];
 
   idList !: CreateListResponse
@@ -28,10 +28,15 @@ export class DialogAddMovieToPlaylistComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: DialogMovieListData) { }
 
   ngOnInit(): void {
+
   }
 
   addMovie() {
-    this.listService.addToList(this.addMovieToList, this.data.id).subscribe()
+    this.listService.addToList(this.addMovieToList, 7114463).subscribe()
+  }
+
+  getLists(): void {
+    this.listService.getPlaylistDetails
   }
 
 

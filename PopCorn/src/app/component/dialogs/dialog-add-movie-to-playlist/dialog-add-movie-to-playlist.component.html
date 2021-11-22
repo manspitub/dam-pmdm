@@ -4,9 +4,9 @@
   <form method="post" id="formulario-addPlaylist" (ngSubmit)="addMovie()">
     <div class="form-group">
       <mat-form-field>
-          <mat-label>Elegir Lista</mat-label>
+          <mat-label>Elegir Peli</mat-label>
           <mat-select [(ngModel)]="addMovieToList.media_id" name="listaAniadir" required>
-            <mat-option *ngFor="let lista of listas" value="{{ lista.list_id }}">{{ lista.list_id }}</mat-option>
+            <mat-option *ngFor="let peli of movies" value="{{ peli.id }}">{{ peli.title }}</mat-option>
           </mat-select>
 
         </mat-form-field>
@@ -17,10 +17,6 @@
 
 
 
-    <div class="submit">
-      <button mat-raised-button type="submit" value="Submit" color="primary">
-        Poner a la venta
-      </button>
-    </div>
+    
   </form>
 </div>
