@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MoviesItemComponentComponent } from '../component/movies-item-component/movies-item-component.component';
 import { MoviesPopularListComponentComponent } from '../component/movies-popular-list-component/movies-popular-list-component.component';
-import { MovieFormDto } from '../dto/movieform.dto';
 import { MovieResponse } from '../interface/movie-details.interface';
 import { Movie, MoviesPopularResponse } from '../interface/movie-list.interface';
 

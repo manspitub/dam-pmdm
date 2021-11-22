@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialImportsModule } from './modules/material-imports.module';
 import { PopularPeopleComponent } from './component/popular-people/popular-people.component';
 import { PeopleItemComponent } from './component/people-item/people-item.component';
-import { MovieDetailComponent } from './dialogs/movie-detail/movie-detail.component';
 import { PeopleDetailsComponent } from './component/people-details/people-details.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { animation } from '@angular/animations';
@@ -18,6 +17,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginDialogComponent } from './component/dialogs/login-dialog/login-dialog.component';
 import { SessionComponent } from './component/session/session.component';
 import { DialogAddMovieToPlaylistComponent } from './component/dialogs/dialog-add-movie-to-playlist/dialog-add-movie-to-playlist.component';
+import { DialogCreateListComponent } from './component/dialogs/dialog-create-list/dialog-create-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,17 +27,19 @@ import { DialogAddMovieToPlaylistComponent } from './component/dialogs/dialog-ad
     MoviesItemComponentComponent,
     PopularPeopleComponent,
     PeopleItemComponent,
-    MovieDetailComponent,
     PeopleDetailsComponent,
     LoginDialogComponent,
     SessionComponent,
     DialogAddMovieToPlaylistComponent,
+    DialogCreateListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MaterialImportsModule,
+    FormsModule,
     MaterialImportsModule,
     NgCircleProgressModule.forRoot({
       "radius": 25,
@@ -60,7 +63,7 @@ import { DialogAddMovieToPlaylistComponent } from './component/dialogs/dialog-ad
   ],
 
   entryComponents:[
-    MovieDetailComponent
+
   ],
 
 
