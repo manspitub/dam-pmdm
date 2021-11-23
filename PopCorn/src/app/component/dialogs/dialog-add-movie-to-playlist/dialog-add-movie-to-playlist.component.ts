@@ -1,14 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AddMovieToListDto } from 'src/app/dto/addMovieToList.dto';
-import { CreateListResponse, CreateListResponses, ListForm } from 'src/app/interface/list.interface';
-import { Movie } from 'src/app/interface/movie-list.interface';
-import { AuthService } from 'src/app/services/auth.service';
+import { ListIdDto } from 'src/app/dto/listId.dto';
+import { CreateListResponse, CreateListResponses, ListForm, PlaylistResponse, Item, ListsResponse, List } from 'src/app/interface/list.interface';
+import { MovieResponse } from 'src/app/interface/movie-details.interface';
+import { MoviesServiceService } from 'src/app/services/movies-service.service';
 import { PlaylistService } from 'src/app/services/playlist.service';
 
 export interface DialogMovieListData{
-  id: number
+  id: number;
 }
 
 @Component({
@@ -18,25 +18,52 @@ export interface DialogMovieListData{
 })
 export class DialogAddMovieToPlaylistComponent implements OnInit {
 
-  addMovieToList= new AddMovieToListDto;
-  listas : CreateListResponse[] = [];
-  movies !: Movie[];
+  addMovieToList= new AddMovieToListDto();
+  listId= new ListIdDto;
+  listas: ListsResponse[] = [];
+  lista: List[] = [];
+  list!: List;
+  movieInput!: MovieResponse;
 
-  idList !: CreateListResponse
+
+
+  idList !: CreateListResponse;
 
   constructor(private listService: PlaylistService,
-    @Inject(MAT_DIALOG_DATA) private data: DialogMovieListData) { }
+    @Inject(MAT_DIALOG_DATA) private data: DialogMovieListData, private movieService: MoviesServiceService) { }
 
   ngOnInit(): void {
+    this.listService.getListsCreated().subscribe(result =>{
+      this.lista = result.results;
+    });
+    console.log(this.data.id);
+    this.movieService.getMovie(this.data.id).subscribe(result=> {
+      this.movieInput= result;
+      this.addMovieToList.media_id = result.id
 
+    });
   }
 
   addMovie() {
-    this.listService.addToList(this.addMovieToList, 7114463).subscribe()
+    this.listService.addToList(this.addMovieToList, this.listId).subscribe();
+    console.log(this.data.id);
   }
 
-  getLists(): void {
-    this.listService.getPlaylistDetails
+
+
+  getMovieId(): void {
+     this.addMovieToList.media_id = this.data.id
+  }
+
+  getLists(){
+
+  }
+
+  getMovieId1() {
+    this.movieService.getMovie(this.data.id).subscribe(result=> {
+      this.movieInput = result
+      return result.id
+    })
   }
 
 

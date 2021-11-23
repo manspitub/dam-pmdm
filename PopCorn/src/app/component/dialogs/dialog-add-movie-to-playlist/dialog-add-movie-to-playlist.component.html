@@ -5,8 +5,8 @@
     <div class="form-group">
       <mat-form-field>
           <mat-label>Elegir Peli</mat-label>
-          <mat-select [(ngModel)]="addMovieToList.media_id" name="listaAniadir" required>
-            <mat-option *ngFor="let peli of movies" value="{{ peli.id }}">{{ peli.title }}</mat-option>
+          <mat-select [(ngModel)]="listId" name="name" required>
+            <mat-option *ngFor="let item of lista" [value]=" item.id ">{{ item.name }}</mat-option>
           </mat-select>
 
         </mat-form-field>
@@ -17,6 +17,6 @@
 
 
 
-    
+
   </form>
 </div>

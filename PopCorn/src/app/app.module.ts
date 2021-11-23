@@ -31,7 +31,9 @@ import { FormsModule } from '@angular/forms';
     LoginDialogComponent,
     SessionComponent,
     DialogAddMovieToPlaylistComponent,
-    DialogCreateListComponent
+    DialogCreateListComponent,
+
+
   ],
   imports: [
     BrowserModule,
