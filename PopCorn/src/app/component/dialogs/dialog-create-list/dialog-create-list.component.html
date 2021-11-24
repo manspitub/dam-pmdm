@@ -6,13 +6,13 @@
     <div class="name">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="nombre de la lista" [(ngModel)]="listPost.name" name="nombre" >
+        <input id="name" matInput placeholder="nombre de la lista" [formControl]="name"  >
       </mat-form-field>
     </div>
     <div class="description">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Descripción</mat-label>
-        <input matInput placeholder="descripcion"  [(ngModel)]="listPost.description" name="description">
+        <input matInput placeholder="descripcion"  [formControl]="description" >
       </mat-form-field>
     </div>
     <div class="submit">

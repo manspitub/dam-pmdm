@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreatedListDto } from 'src/app/dto/createdList.dto';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,5 +22,9 @@ export class DialogCreateListComponent implements OnInit {
   createList(){
     this.playlistService.listPost(this.listPost).subscribe()
   }
+
+  = new FormControl('listPost.name');
+
+  description = new FormControl('listPost.description');
 
 }
