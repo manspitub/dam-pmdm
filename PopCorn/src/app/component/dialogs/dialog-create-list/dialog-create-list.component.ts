@@ -23,8 +23,6 @@ export class DialogCreateListComponent implements OnInit {
     this.playlistService.listPost(this.listPost).subscribe()
   }
 
-  = new FormControl('listPost.name');
-
-  description = new FormControl('listPost.description');
+ 
 
 }

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { DialogAddMovieToPlaylistComponent } from '../dialogs/dialog-add-movie-to-playlist/dialog-add-movie-to-playlist.component';
 import { DialogCreateListComponent } from '../dialogs/dialog-create-list/dialog-create-list.component';
 import { DialogFavouriteMovieComponent } from '../dialogs/dialog-favourite-movie/dialog-favourite-movie.component';
+import { DialogGenreFilterComponent } from '../dialogs/dialog-genre-filter/dialog-genre-filter.component';
 import { LoginDialogComponent } from '../dialogs/login-dialog/login-dialog.component';
 
 
@@ -57,6 +58,14 @@ export class MoviesItemComponentComponent implements OnInit {
       }
     }
 
+    genreFilter(){
+      if(this.authService.isLoggedIn()){
+        this.openGenreFilterDialog();
+      } else {
+        this.openGenreFilterDialog();
+      }
+    }
+
     addToPlayList() {
       if(this.authService.isLoggedIn()) {
         this.openPlaylistAddDialog();
@@ -94,6 +103,16 @@ export class MoviesItemComponentComponent implements OnInit {
         width: '400px',
         disableClose: false,
         data: { id: this.movieInput.id}
+      }
+      )
+    }
+
+    openGenreFilterDialog(){
+      this.dialog.open(DialogGenreFilterComponent, {
+        width: '2000px',
+        height: '1000px',
+        disableClose: false,
+        
       }
       )
     }

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AddMovieToListDto } from '../dto/addMovieToList.dto';
 import { CreatedListDto } from '../dto/createdList.dto';
 import { ListIdDto } from '../dto/listId.dto';
-import { AddToListResponse, CreateListResponse, ListsResponse, PlaylistResponse } from '../interface/list.interface';
+import { AddToListResponse, CreateListResponse, GenreResponse, ListsResponse, PlaylistResponse } from '../interface/list.interface';
 
 
 const DEFAULT_HEADERS = {
@@ -38,6 +38,10 @@ export class PlaylistService {
     return this.http.get<ListsResponse>(`https://api.themoviedb.org/3/account/11320876/lists?api_key=${environment.apiKey}&language=${environment.lang}S&session_id=${localStorage.getItem('session_id')}`)
   }
 
+  getGenreList(): Observable<GenreResponse>
+{
+  return this.http.get<GenreResponse>(`https://api.themoviedb.org/3/genre/movie/list?api_key=${environment.apiKey}&language=${environment.lang}`)
+}
 
 
 

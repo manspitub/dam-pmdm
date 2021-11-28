@@ -1,0 +1,23 @@
+<div id="container">
+    <h1>&bull; Selecciona el género por el que filtrar&bull;</h1>
+    <div class="underline"></div>
+    <form method="post" id="formulario-genreFilter" >
+      <div class="form-group">
+        <mat-form-field>
+            <mat-label>Elegir Género</mat-label>
+            <mat-select [(ngModel)]="genreId" name="name" required>
+              <mat-option *ngFor="let item of genres" [value]=" item.id ">{{ item.name }}</mat-option>
+            </mat-select>
+  
+          </mat-form-field>
+          <button mat-raised-button (click)="getMoviesFromGenre()">
+            Mostrar pelis
+          </button>
+        </div>
+  
+  
+  
+  
+    </form>
+  </div>
+  
