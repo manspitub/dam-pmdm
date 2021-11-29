@@ -5,19 +5,22 @@
       <div class="form-group">
         <mat-form-field>
             <mat-label>Elegir Género</mat-label>
-            <mat-select [(ngModel)]="genreId" name="name" required>
+            <mat-select [(ngModel)]="genreId" name="name" (selectionChange)="getMoviesFromGenre()" required>
               <mat-option *ngFor="let item of genres" [value]=" item.id ">{{ item.name }}</mat-option>
             </mat-select>
-  
+
           </mat-form-field>
           <button mat-raised-button (click)="getMoviesFromGenre()">
             Mostrar pelis
           </button>
+
+          <ul *ngFor="let movie of listaMoviesFiltrada ">
+            <li>{{movie.title}}</li>
+          </ul>
         </div>
-  
-  
-  
-  
+
+
+
+
     </form>
   </div>
-  

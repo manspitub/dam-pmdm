@@ -20,6 +20,7 @@ import { DialogAddMovieToPlaylistComponent } from './component/dialogs/dialog-ad
 import { DialogCreateListComponent } from './component/dialogs/dialog-create-list/dialog-create-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogGenreFilterComponent } from './component/dialogs/dialog-genre-filter/dialog-genre-filter.component';
+import { FilterPipe } from './component/pipe/filter.pipe/filter.pipe.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DialogGenreFilterComponent } from './component/dialogs/dialog-genre-fil
     SessionComponent,
     DialogAddMovieToPlaylistComponent,
     DialogCreateListComponent,
-    DialogGenreFilterComponent
+    DialogGenreFilterComponent,
+    FilterPipe
 
 
   ],
