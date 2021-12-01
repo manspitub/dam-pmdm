@@ -1,1 +1,10 @@
-<p>gasolinera-list works!</p>
+
+<body style="background-color: aquamarine;">
+<mat-spinner></mat-spinner> Su solicitud se está cargando
+  <div fxLayout="row wrap" fxLayoutGap="20px grid" fxFlexFill fxLayoutAlign="start start" class="scroll-container">
+  <app-gasolinera-item fxFlex="20" class="movie-item" *ngFor= "let gasol of gasolineraList" [gasolinaInput]="gasol"></app-gasolinera-item>
+  </div>
+
+</body>
+
+

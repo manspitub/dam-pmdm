@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "80c632a6-dd88-4200-b531-9f2db5edaef8"
+    "analytics": "f6e250e5-db40-4a10-908c-ba20bcbbb099"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-gasapp": {
+    "angular-GasApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-gasapp",
+            "outputPath": "dist/angular-GasApp",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -71,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-gasapp:build:production"
+              "browserTarget": "angular-GasApp:build:production"
             },
             "development": {
-              "browserTarget": "angular-gasapp:build:development"
+              "browserTarget": "angular-GasApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-gasapp:build"
+            "browserTarget": "angular-GasApp:build"
           }
         },
         "test": {
@@ -97,6 +98,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -105,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "angular-gasapp"
+  "defaultProject": "angular-GasApp"
 }

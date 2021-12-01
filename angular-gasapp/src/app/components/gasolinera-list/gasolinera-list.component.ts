@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { timingSafeEqual } from 'crypto';
-import { GasolinerasListResponse, ListaEESSPrecio } from 'src/app/models/interfaces/gasolineras.interface';
+import { Component, Input, OnInit } from '@angular/core';
+import { GasolinerasListResponse, ListaEESSPrecio } from 'src/app/interfaces/gasolinera.interface';
 import { GasolineraService } from 'src/app/services/gasolinera.service';
 
 @Component({
@@ -10,12 +9,14 @@ import { GasolineraService } from 'src/app/services/gasolinera.service';
 })
 export class GasolineraListComponent implements OnInit {
   gasolineraList: ListaEESSPrecio[] = [];
+  gasolineraFecha: GasolinerasListResponse[] = []
 
   constructor(private gasolineraService: GasolineraService) { }
 
   ngOnInit(): void {
     this.gasolineraService.getGasolineras().subscribe(resp => {
-      this.gasolineraList = this.gasolineraService.parseAnyToGasolineraListResponse(resp);
+      let jsonString = JSON.stringify(resp);
+      this.gasolineraList = this.gasolineraService.parseAnyToGasolineraListResponse(jsonString);
       console.log(this.gasolineraList);
     });
   }

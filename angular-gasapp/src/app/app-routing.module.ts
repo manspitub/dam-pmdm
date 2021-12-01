@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GasolineraListComponent } from './components/gasolinera-list/gasolinera-list.component';
 
 const routes: Routes = [
-  { path: '', component: GasolineraListComponent }
+  {path:'', component: GasolineraListComponent}
 ];
 
 @NgModule({
