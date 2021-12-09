@@ -27,8 +27,6 @@ export class GasolinaDetailsComponent implements OnInit {
     this.gasolinera = this.data.gasolinera;
   }
 
-  like(){
-    
-  }
+  
 
 }

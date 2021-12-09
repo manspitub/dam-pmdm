@@ -21,6 +21,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireModule } from '@angular/fire/compat';
+import { GasolinerasFavComponent } from './components/gasolineras-fav/gasolineras-fav.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     GasolineraItemComponent,
     GasolineraListComponent,
     GasolinaDetailsComponent,
-    FormGasolinerasComponent
+    FormGasolinerasComponent,
+    GasolinerasFavComponent
   ],
   imports: [
     BrowserModule,

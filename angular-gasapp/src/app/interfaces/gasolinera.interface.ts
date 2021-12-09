@@ -19,4 +19,5 @@ export interface ListaEESSPrecio {
   idMunicipio:                    string;
   idProvincia:                    string;
   idccaa:                         string;
+  ID:                             string;
 }
