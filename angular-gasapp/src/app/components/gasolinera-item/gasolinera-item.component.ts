@@ -34,10 +34,6 @@ export class GasolineraItemComponent implements OnInit {
     this.gasolinaService.getGoogleMaps(direccion.replace(' ', '+'))
   }
 
-  loginGasoliner(){
-    this.gasolinaInput(resp=> {
-      
-    })
-  }
+  
 
 }
