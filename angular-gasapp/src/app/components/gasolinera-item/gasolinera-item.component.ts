@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { GasolinerasListResponse, ListaEESSPrecio } from 'src/app/interfaces/gasolinera.interface';
 import { GasolineraService } from 'src/app/services/gasolinera.service';
@@ -14,7 +16,7 @@ export class GasolineraItemComponent implements OnInit {
   @Input() gasolinaInput!: ListaEESSPrecio;
   i:number = 0;
 
-  constructor(private gasolinaService: GasolineraService, private dialog: MatDialog) { }
+  constructor(private gasolinaService: GasolineraService, private dialog: MatDialog,   private auth: AngularFireAuth, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +28,16 @@ export class GasolineraItemComponent implements OnInit {
       disableClose: false,
       data: { gasolinera: this.gasolinaInput
      } })
+  }
+
+  getGoogleMaps(direccion:String){
+    this.gasolinaService.getGoogleMaps(direccion.replace(' ', '+'))
+  }
+
+  loginGasoliner(){
+    this.gasolinaInput(resp=> {
+      
+    })
   }
 
 }

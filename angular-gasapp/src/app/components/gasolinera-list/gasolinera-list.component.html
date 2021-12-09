@@ -1,6 +1,14 @@
 
 <body style="background-color: aquamarine;">
 <mat-spinner></mat-spinner> Su solicitud se está cargando
+<p><a routerLink="form-gasolineras">Filtrado</a></p>
+<button mat-button class="primary" (click)="login()">Log</button>
+<button mat-button class="primary" (click)="logout()">Logout</button>
+
+<div>
+
+</div>
+
   <div fxLayout="row wrap" fxLayoutGap="20px grid" fxFlexFill fxLayoutAlign="start start" class="scroll-container">
   <app-gasolinera-item fxFlex="20" class="movie-item" *ngFor= "let gasol of gasolineraList" [gasolinaInput]="gasol"></app-gasolinera-item>
   </div>

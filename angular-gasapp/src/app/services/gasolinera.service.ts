@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { GasolinerasListResponse } from '../interfaces/gasolinera.interface';
+import { MunicipioResponse } from '../interfaces/municipios.interface';
+import { ProvinciaResponse } from '../interfaces/provincia.interface';
 
 
 @Injectable({
@@ -13,6 +15,30 @@ export class GasolineraService {
 
   getGasolineras(): Observable<any> {
     return this.http.get<any>('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/');
+  }
+
+  getProvincias(): Observable<ProvinciaResponse[]> {
+    return this.http.get<ProvinciaResponse[]>(`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/Provincias/`)
+  }
+
+  getMunicipios(provinciaId: String): Observable<MunicipioResponse[]> {
+    return this.http.get<MunicipioResponse[]>(`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/MunicipiosPorProvincia/${provinciaId}`)
+  }
+
+  getGoogleMaps(direccion:String){
+    return window.location.href=(`https://www.google.es/maps/search/${direccion}/`)
+  }
+
+  getMunicipiosByProvinciaId(provinciaId: String): Observable<MunicipioResponse[]> {
+    return this.http.get<MunicipioResponse[]>(`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/MunicipiosPorProvincia/${provinciaId}`);
+  }
+
+  public requestMultipleMunicipioProvincia(provinciasIds: String[]): Observable<MunicipioResponse[][]> {
+    let responseMunicipios: Observable<MunicipioResponse[]>[] = [];
+    provinciasIds.forEach(pId => {
+      responseMunicipios.push(this.getMunicipiosByProvinciaId(pId));
+    });
+    return forkJoin(responseMunicipios);
   }
 
 
@@ -27,6 +53,14 @@ export class GasolineraService {
     jsonStringReplaced = jsonStringReplaced.replace(/Precio Gasolina 95 E5/gi, 'precioGasolina95E5');
     jsonStringReplaced = jsonStringReplaced.replace(/Precio Gasolina 95E5/gi, 'precioGasolina95E5');
     jsonStringReplaced = jsonStringReplaced.replace(/Precio Gasolina 98 E5/gi, 'precioGasolina98E5');
+    jsonStringReplaced = jsonStringReplaced.replace(/Provincia/gi, 'provincia');
+    jsonStringReplaced = jsonStringReplaced.replace(/IDEESS/gi, 'ideess');
+    jsonStringReplaced = jsonStringReplaced.replace(/IDMunicipio/gi, 'idMunicipio');
+    jsonStringReplaced = jsonStringReplaced.replace(/IDProvincia/gi, 'idProvincia');
+    jsonStringReplaced = jsonStringReplaced.replace(/IDCCAA/gi, 'idccaa');
+
+
+
     let jsonFinal: GasolinerasListResponse = JSON.parse(jsonStringReplaced);
     return jsonFinal.listaEESSPrecio;
   }

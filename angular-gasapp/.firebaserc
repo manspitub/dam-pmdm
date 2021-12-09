@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gasapp-b3e04": {
+      "hosting": {
+        "angular-GasApp": [
+          "gasapp-b3e04"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gasapp-b3e04"
+  }
+}
