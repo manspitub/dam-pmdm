@@ -22,6 +22,8 @@ export class GasolineraListComponent implements OnInit {
 
   gasoliners!: Observable<Gasoliner[]>
 
+  sesion: string = 'no ha iniciado sesion'
+
 
   constructor(private gasolineraService: GasolineraService, public auth: AngularFireAuth, private firestore: AngularFirestore ) { }
 
@@ -46,10 +48,21 @@ export class GasolineraListComponent implements OnInit {
     })
   }
 
-  
+
 
   logout(){
-    this.auth.signOut()
+    return localStorage.clear()
+  }
+
+  getName(){
+    if(localStorage.getItem('name')){
+      return localStorage.getItem('name')
+    }
+    else return this.sesion
+  }
+
+  getPhoto(){
+    return localStorage.getItem('photo')
   }
 
 }

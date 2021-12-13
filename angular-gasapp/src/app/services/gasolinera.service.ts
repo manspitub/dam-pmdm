@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { forkJoin, Observable } from 'rxjs';
 import { GasolinerasListResponse } from '../interfaces/gasolinera.interface';
 import { MunicipioResponse } from '../interfaces/municipios.interface';
@@ -11,7 +12,7 @@ import { ProvinciaResponse } from '../interfaces/provincia.interface';
 })
 export class GasolineraService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private firestore: AngularFirestore) { }
 
   getGasolineras(): Observable<any> {
     return this.http.get<any>('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/');
@@ -63,5 +64,10 @@ export class GasolineraService {
 
     let jsonFinal: GasolinerasListResponse = JSON.parse(jsonStringReplaced);
     return jsonFinal.listaEESSPrecio;
+  }
+
+  deleteFavorites(docId: string){
+    let userId = localStorage.getItem('uid')
+    return this.firestore.collection('gasolineraLike').doc(docId).delete
   }
 }

@@ -26,7 +26,15 @@ export class GasolinaDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.gasolinera = this.data.gasolinera;
   }
+  getGasolinerPhoto(){
+    if (this.gasolinera.rotulo == 'REPSOL'){
+      return 'https://cflvdg.avoz.es/sc/SzffnIIxc5UYIzMDcBcvbKHfh3E=/1280x/2018/12/26/00121545856322016951233/Foto/P12D7191.jpg'
+  } else if(this.gasolinera.rotulo == 'CEPSA'){
+    return 'https://atenoil.com/wp-content/uploads/2017/08/sanse-cepsa-01.jpg'
+  }
+  return 'https://globalestacionesdeservicio.com/wp-content/uploads/2015/10/gasolineras.jpg'
+}
 
-  
+
 
 }

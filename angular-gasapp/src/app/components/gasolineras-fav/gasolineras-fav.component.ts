@@ -25,7 +25,7 @@ export class GasolinerasFavComponent implements OnInit {
   user = localStorage.getItem('name')
 
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, private gasolineraService: GasolineraService) { }
 
   gasolinerasLike!: Observable<ListaEESSPrecio[]>;
 
@@ -34,7 +34,11 @@ export class GasolinerasFavComponent implements OnInit {
     this.gasolinerasLike = this.firestore.collection<ListaEESSPrecio>(COLLECTION_GASOLINERA_LIKES, ref=> ref.where('uid', '==',localStorage.getItem('uid'))).valueChanges();
   }
 
-  
+  deleteFavorito(){
+    this.gasolineraService.deleteFavorites(this.gasolinerasLike.)
+  }
+
+
 
 
 }

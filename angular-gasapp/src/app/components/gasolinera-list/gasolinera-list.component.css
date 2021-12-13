@@ -1,0 +1,8 @@
+.usuarios{
+  float: right;
+  align-items: flex-end;
+  padding: 50px;
+}
+.photo{
+  border-radius: 20px;
+}
