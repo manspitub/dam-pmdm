@@ -1,17 +1,12 @@
-<body style="background-color: aquamarine;">
-    <mat-spinner></mat-spinner> Su solicitud se está cargando
-    <p><a routerLink="form-gasolineras">Filtrado</a></p>
 
-    
-    <div>
-    
-    </div>
-    
-      <div fxLayout="row wrap" fxLayoutGap="20px grid" fxFlexFill fxLayoutAlign="start start" class="scroll-container">
-      <app-gasolinera-item fxFlex="20" class="movie-item" *ngFor= "let gasol of gasolineras" [gasolinaInput]="gasol"></app-gasolinera-item>
-      </div>
-    
-    </body>
-    
-    
+
+<b><p>Bienvenido</p><p>{{user}}</p></b>
+
+
+<ul>
+  <li *ngFor="let gasol of gasolinerasLike | async">{{gasol.direccion}} ||
+    {{gasol.municipio}} ||
+    {{gasol.provincia}}
+  </li>
+</ul>
     

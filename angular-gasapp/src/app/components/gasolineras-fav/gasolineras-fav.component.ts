@@ -1,8 +1,15 @@
+import { isNull } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from 'firebase/auth';
+import { ref } from 'firebase/database';
+import { Observable } from 'rxjs';
 import { ListaEESSPrecio } from 'src/app/interfaces/gasolinera.interface';
 import { GasolineraService } from 'src/app/services/gasolinera.service';
+
+const COLLECTION_GASOLINERA_LIKES = 'gasolineraLike'
+const COLLECTION_USERS = 'users'
 
 export interface GasolinerasData{
   gasoliners: ListaEESSPrecio[];
@@ -15,14 +22,19 @@ export interface GasolinerasData{
 })
 export class GasolinerasFavComponent implements OnInit {
 
-  gasolineras!: ListaEESSPrecio[];
+  user = localStorage.getItem('name')
 
 
-  constructor(@Inject (MAT_DIALOG_DATA) private data: GasolinerasData, private gasolinaService: GasolineraService, private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore) { }
+
+  gasolinerasLike!: Observable<ListaEESSPrecio[]>;
 
   ngOnInit(): void {
 
-    this.gasolineras = this.data.gasoliners
+    this.gasolinerasLike = this.firestore.collection<ListaEESSPrecio>(COLLECTION_GASOLINERA_LIKES, ref=> ref.where('uid', '==',localStorage.getItem('uid'))).valueChanges();
   }
+
+  
+
 
 }

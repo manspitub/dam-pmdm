@@ -6,6 +6,7 @@ import { GasolineraListComponent } from './components/gasolinera-list/gasolinera
 const routes: Routes = [
   {path:'', component: GasolineraListComponent},
   {path:'form-gasolineras', component: FormGasolinerasComponent}
+  
 ];
 
 @NgModule({

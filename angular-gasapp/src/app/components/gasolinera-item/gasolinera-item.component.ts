@@ -22,7 +22,7 @@ export class GasolineraItemComponent implements OnInit {
   gasolineras!: Observable<ListaEESSPrecio[]>;
   i:number = 0;
 
-  constructor(private gasolinaService: GasolineraService, private dialog: MatDialog,   private auth: AngularFireAuth, private firestore: AngularFirestore) { }
+  constructor(private gasolinaService: GasolineraService, private dialog: MatDialog,   private auth: AngularFireAuth, private firestore: AngularFirestore,  ) { }
 
   ngOnInit(): void {
   }
@@ -42,10 +42,12 @@ export class GasolineraItemComponent implements OnInit {
 
   like(gasolinera: ListaEESSPrecio){
 
-    
+    if(localStorage.getItem('uid')==null){
+      window.location.replace("http://localhost:4200/login")
+    }else
 
-    this.firestore.collection(COLLECTION_GASOLINERA_LIKES).doc(gasolinera.ideess)
-    .set({
+    this.firestore.collection(COLLECTION_GASOLINERA_LIKES)
+    .add({
       provincia: gasolinera.provincia, 
       direccion: gasolinera.direccion, 
       horario: gasolinera.horario,
@@ -58,13 +60,13 @@ export class GasolineraItemComponent implements OnInit {
       idMunicipio: gasolinera.idMunicipio,
       idProvincia: gasolinera.idProvincia,
       idccaa: gasolinera.idccaa,
+      uid: localStorage.getItem('uid')
     })
 
     this.gasolineras = this.firestore.collection<ListaEESSPrecio>(COLLECTION_GASOLINERA_LIKES).valueChanges();
     this.dialog.open(GasolinerasFavComponent, {
       width: '500px',
       disableClose:false,
-      data: {gasoliners: this.gasolineras}
     })
   }
 
