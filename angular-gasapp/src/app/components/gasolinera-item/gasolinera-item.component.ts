@@ -86,4 +86,12 @@ export class GasolineraItemComponent implements OnInit {
       });
     }
   }
+
+  deleteFavorite(gasolinera: ListaEESSPrecio){
+    
+
+    this.gasolinaService.deleteFavorites(gasolinera.ideess).then(resp=>{
+      alert(`Se ha eliminado la gasolinera ${gasolinera.rotulo}`)
+    })
+  }
 }

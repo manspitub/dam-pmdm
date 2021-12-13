@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { forkJoin, Observable } from 'rxjs';
 import { GasolinerasListResponse } from '../interfaces/gasolinera.interface';
+import { GasolineraFav } from '../interfaces/gasolineraFav';
 import { MunicipioResponse } from '../interfaces/municipios.interface';
 import { ProvinciaResponse } from '../interfaces/provincia.interface';
 
@@ -66,8 +67,13 @@ export class GasolineraService {
     return jsonFinal.listaEESSPrecio;
   }
 
+  getFavorites(): Observable<GasolineraFav[]>{
+    let userId = localStorage.getItem('uid')
+    return this.firestore.collection<GasolineraFav>('gasolineraLike').valueChanges();
+  }
+
   deleteFavorites(docId: string){
     let userId = localStorage.getItem('uid')
-    return this.firestore.collection('gasolineraLike').doc(docId).delete
+    return this.firestore.collection('gasolineraLike').doc(docId).delete();
   }
 }
