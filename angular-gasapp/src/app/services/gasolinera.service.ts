@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { forkJoin, Observable } from 'rxjs';
-import { GasolinerasListResponse } from '../interfaces/gasolinera.interface';
+import { CreatedListDto, GasolinerasListResponse } from '../interfaces/gasolinera.interface';
 import { GasolineraFav } from '../interfaces/gasolineraFav';
 import { MunicipioResponse } from '../interfaces/municipios.interface';
 import { ProvinciaResponse } from '../interfaces/provincia.interface';
+import { List } from '../interfaces/list';
 
 
 @Injectable({
@@ -67,8 +68,12 @@ export class GasolineraService {
     return jsonFinal.listaEESSPrecio;
   }
 
+  list!: AngularFirestore;
+  listas: AngularFirestore[] = []
+  selectedList: List = new List();
+
   getFavorites(): Observable<GasolineraFav[]>{
-    let userId = localStorage.getItem('uid')
+
     return this.firestore.collection<GasolineraFav>('gasolineraLike').valueChanges();
   }
 
@@ -76,4 +81,29 @@ export class GasolineraService {
     let userId = localStorage.getItem('uid')
     return this.firestore.collection('gasolineraLike').doc(docId).delete();
   }
+
+  getcreatedList(): Observable<List[]> {
+    return  this.firestore.collection<List>(`gasolineras`).valueChanges()
+  }
+
+  createList(list: List){
+    return this.firestore.collection('gasolineras').doc(list.$key).set({
+      nombre: list.nombre,
+      descripcion: list.descripcion,
+      gasolineras: list.gasolineras
+    })
+  }
+
+  updateList(list: List){
+    return this.firestore.collection('gasolineras').doc(list.$key).update({
+      nombre: list.nombre,
+      descripcion: list.descripcion,
+      gasolineras: list.gasolineras
+    })
+  }
+
+  deleteList($key: string){
+    return this.firestore.collection(`gasolineras`).doc($key).delete();
+  }
+
 }

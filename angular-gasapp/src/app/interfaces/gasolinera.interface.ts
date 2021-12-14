@@ -21,3 +21,16 @@ export interface ListaEESSPrecio {
   idccaa:                         string;
   ID:                             string;
 }
+
+export class CreatedListDto{
+  name: string;
+  gasolineras: ListaEESSPrecio[];
+
+
+  constructor(){
+    this.name = '';
+    this.gasolineras= [];
+  }
+}
+
+
