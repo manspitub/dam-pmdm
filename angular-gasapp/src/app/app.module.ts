@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -13,20 +14,18 @@ import { GasolinaDetailsComponent } from './components/dialogs/gasolina-details/
 import { FormGasolinerasComponent } from './components/formularios/form-gasolineras/form-gasolineras.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireAuthModule, USE_DEVICE_LANGUAGE, USE_EMULATOR as USE_AUTH_EMULATOR } from '@angular/fire/compat/auth';
-import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-
 import { AngularFireModule } from '@angular/fire/compat';
 import { GasolinerasFavComponent } from './components/gasolineras-fav/gasolineras-fav.component';
 import { DialogCreateListComponent } from './components/dialog-create-list/dialog-create-list.component';
+import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 
-import { GasolineraService } from './services/gasolinera.service';
-import { initializeApp } from 'firebase/app';
-import { provideFirebaseApp } from '@angular/fire/app';
 
 @NgModule({
   declarations: [
@@ -36,29 +35,30 @@ import { provideFirebaseApp } from '@angular/fire/app';
     GasolinaDetailsComponent,
     FormGasolinerasComponent,
     GasolinerasFavComponent,
-    DialogCreateListComponent
+    DialogCreateListComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialImportsModule,
-    FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     MatCardModule,
     MatSliderModule,
     MatCheckboxModule,
+    FormsModule,
+    FormControl,
     ReactiveFormsModule,
+    AngularFireAuthGuardModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthGuardModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore())
   ],
-  providers: [
-    GasolineraService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

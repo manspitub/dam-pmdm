@@ -13,6 +13,7 @@ export class DialogCreateListComponent implements OnInit {
   constructor(public gasolineraService: GasolineraService) {}
 
   gasolineraList: ListaEESSPrecio[] = []
+  gasoliners: ListaEESSPrecio[] = []
 
   ngOnInit(): void {
     this.gasolineraService.getGasolineras().subscribe(resp => {
