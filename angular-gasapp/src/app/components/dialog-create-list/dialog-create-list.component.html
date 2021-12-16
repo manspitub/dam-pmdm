@@ -1,4 +1,8 @@
-
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Nombre de la lista</mat-label>
+  <input matInput placeholder="Nombre para la lista" [(ngModel)]="newList" name="gasolinera">
+</mat-form-field>
+<button mat-raised-button color="warn" (click)="addnewList()">Crear Nueva Lista</button>
 <ul>
     <li *ngFor="let item of listasList">{{item.id}}, {{item.title}}</li>
 </ul> 

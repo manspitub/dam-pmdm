@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ListaEESSPrecio } from 'src/app/interfaces/gasolinera.interface';
@@ -12,11 +13,12 @@ import { GasolineraService } from 'src/app/services/gasolinera.service';
   styleUrls: ['./dialog-create-list.component.css'],
 })
 export class DialogCreateListComponent implements OnInit {
-  constructor(public gasolineraService: GasolineraService) {}
+  constructor(public gasolineraService: GasolineraService, private firestore: AngularFirestore) {}
 
   gasolineraList: ListaEESSPrecio[] = []
   gasoliners: ListaEESSPrecio[] = []
   listasList: ListaFirebaseDto[] = [];
+  newList!: string;
 
   ngOnInit(): void {
     this.gasolineraService.getGasolineras().subscribe(resp => {
@@ -37,6 +39,10 @@ export class DialogCreateListComponent implements OnInit {
     ).subscribe(data => {
       this.listasList = data;
     });
+  }
+
+  addnewList(){
+    this.firestore.collection(this.newList).add({nombre: this.newList})
   }
 
 }
