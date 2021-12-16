@@ -48,7 +48,7 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
     MatSliderModule,
     MatCheckboxModule,
     FormsModule,
-    FormControl,
+    
     ReactiveFormsModule,
     AngularFireAuthGuardModule,
     AngularFireAuthModule,

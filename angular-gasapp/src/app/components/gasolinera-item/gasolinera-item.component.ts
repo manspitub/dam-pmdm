@@ -8,6 +8,7 @@ import {
   ListaEESSPrecio,
 } from 'src/app/interfaces/gasolinera.interface';
 import { GasolineraService } from 'src/app/services/gasolinera.service';
+import { DialogCreateListComponent } from '../dialog-create-list/dialog-create-list.component';
 import { GasolinaDetailsComponent } from '../dialogs/gasolina-details/gasolina-details.component';
 import { GasolinerasFavComponent } from '../gasolineras-fav/gasolineras-fav.component';
 
@@ -38,6 +39,12 @@ export class GasolineraItemComponent implements OnInit {
       disableClose: false,
       data: { gasolinera: this.gasolinaInput },
     });
+  }
+  openCreateListDialog(){
+    this.dialog.open(DialogCreateListComponent, {
+      width: '500px',
+      disableClose: false
+    })
   }
 
   getGoogleMaps(direccion: String) {

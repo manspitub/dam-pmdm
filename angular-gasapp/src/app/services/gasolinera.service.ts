@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { forkJoin, Observable } from 'rxjs';
 import { CreatedListDto, GasolinerasListResponse } from '../interfaces/gasolinera.interface';
 import { GasolineraFav } from '../interfaces/gasolineraFav';
 import { MunicipioResponse } from '../interfaces/municipios.interface';
 import { ProvinciaResponse } from '../interfaces/provincia.interface';
 import { List } from '../interfaces/list';
+import ListaFirebaseDto from '../interfaces/listas-firebase.dto';
 
 
 @Injectable({
@@ -14,7 +15,11 @@ import { List } from '../interfaces/list';
 })
 export class GasolineraService {
 
-  constructor(private http: HttpClient, private firestore: AngularFirestore) { }
+  listaRef!: AngularFirestoreCollection<ListaFirebaseDto>;
+
+  constructor(private http: HttpClient, private firestore: AngularFirestore) {
+    this.listaRef = this.firestore.collection('listas');
+   }
 
   getGasolineras(): Observable<any> {
     return this.http.get<any>('https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/');
@@ -82,28 +87,12 @@ export class GasolineraService {
     return this.firestore.collection('gasolineraLike').doc(docId).delete();
   }
 
-  getcreatedList(): Observable<List[]> {
-    return  this.firestore.collection<List>(`gasolineras`).valueChanges()
+
+
+  getAllList(): AngularFirestoreCollection<ListaFirebaseDto>{
+    return this.listaRef
   }
 
-  createList(list: List){
-    return this.firestore.collection('gasolineras').doc(list.$key).set({
-      nombre: list.nombre,
-      descripcion: list.descripcion,
-      gasolineras: list.gasolineras
-    })
-  }
 
-  updateList(list: List){
-    return this.firestore.collection('gasolineras').doc(list.$key).update({
-      nombre: list.nombre,
-      descripcion: list.descripcion,
-      gasolineras: list.gasolineras
-    })
-  }
-
-  deleteList($key: string){
-    return this.firestore.collection(`gasolineras`).doc($key).delete();
-  }
 
 }

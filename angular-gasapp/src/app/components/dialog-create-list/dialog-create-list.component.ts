@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { map } from 'rxjs/operators';
 import { ListaEESSPrecio } from 'src/app/interfaces/gasolinera.interface';
 import { List } from 'src/app/interfaces/list';
+import ListaFirebaseDto from 'src/app/interfaces/listas-firebase.dto';
 import { GasolineraService } from 'src/app/services/gasolinera.service';
 
 @Component({
@@ -14,6 +16,7 @@ export class DialogCreateListComponent implements OnInit {
 
   gasolineraList: ListaEESSPrecio[] = []
   gasoliners: ListaEESSPrecio[] = []
+  listasList: ListaFirebaseDto[] = [];
 
   ngOnInit(): void {
     this.gasolineraService.getGasolineras().subscribe(resp => {
@@ -21,17 +24,19 @@ export class DialogCreateListComponent implements OnInit {
       this.gasolineraList = this.gasolineraService.parseAnyToGasolineraListResponse(jsonString);
       console.log(this.gasolineraList);
     });
-    this.resetForm();
-  }
-  crear(listForm: NgForm) {
-    this.gasolineraService.createList(listForm.value);
-    this.resetForm(listForm);
+
+} 
+
+  getAllLists(): void {
+    this.gasolineraService.getAllList().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.listasList = data;
+    });
   }
 
-  resetForm(listForm?: NgForm) {
-    if (listForm != null) {
-      listForm.reset();
-      this.gasolineraService.selectedList = new List();
-    }
-  }
 }
