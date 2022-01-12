@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
 
@@ -49,12 +48,8 @@ class Login extends StatefulWidget {
 }
 
 class __loginState extends State<Login> {
-  
-  TextEditingController email =  TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -64,38 +59,43 @@ class __loginState extends State<Login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          TextField(
-            controller: email,
-            decoration: const InputDecoration(
-              hintText: "username@correo.com",
-              helperText: "Introduzca su correo",
-              suffixText: "eu" 
+            const Expanded(
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://previews.123rf.com/images/zazamedia/zazamedia1409/zazamedia140900415/31627005-bot%C3%B3n-login-icon-vector.jpg'),
+                radius: 140,
+              ),
             ),
-          ),
-          TextField(
-            controller: password,
-            obscureText: true,
-            decoration: const InputDecoration(
-              hintText: "",
-              helperText: "Introduzca su contraseña"
+            TextField(
+              controller: email,
+              decoration: const InputDecoration(
+                  hintText: "username@correo.com",
+                  helperText: "Introduzca su correo",
+                  suffixText: "@"),
             ),
-          ) ,
-
-          Container(
-            margin: const EdgeInsets.only(top: 70), 
-            width: 200,
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(10),
+            TextField(
+              controller: password,
+              obscureText: true,
+              decoration: const InputDecoration(
+                  hintText: "", helperText: "Introduzca su contraseña"),
             ),
-            child: FloatingActionButton(
-              child: const Text("Login", style: TextStyle(color: Colors.white, fontSize: 20),),
-              onPressed: (){},
+            Container(
+              margin: const EdgeInsets.only(top: 70),
+              width: 200,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: FloatingActionButton(
+                child: const Text(
+                  "Login",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () {},
+              ),
             ),
-          ),
-         
-                     
-        ],),
+          ],
+        ),
       ),
     );
   }
