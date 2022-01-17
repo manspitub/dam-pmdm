@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:listadosmanuel/models/planets_response.dart';
 import 'package:listadosmanuel/nav_bar_superior.dart';
@@ -14,7 +14,18 @@ class Cartel extends StatelessWidget{
     
     return Column(
       children:  <Widget>[
-        Stack(
+        
+        this.encabezado(),
+        this.pelis()
+
+        
+      ],
+    );
+
+  }
+
+  Widget encabezado() {
+    return  Stack(
           children: <Widget>[
             Image.network("https://starwars-visualguide.com/assets/img/planets/4.jpg", height: 280, width: 300, fit: BoxFit.cover,),
             Container(
@@ -37,11 +48,19 @@ class Cartel extends StatelessWidget{
               )
             
           ],
-        ),
-        
-      ],
-    );
-
+        );
   }
   
+  Widget pelis() {
+    return Row(
+      children: <Widget>[
+        ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index){
+            return Text(items.elementAt(index).name);
+          },
+        )
+      ],
+    );
+  }
 }

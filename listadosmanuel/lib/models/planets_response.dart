@@ -31,7 +31,7 @@ class PlanetsResponse {
 }
 
 class Planets {
-  String? name;
+ late final String name;
   String? rotationPeriod;
   String? orbitalPeriod;
   String? diameter;
@@ -47,7 +47,7 @@ class Planets {
   String? url;
 
   Planets(
-      {this.name,
+      {required this.name,
       this.rotationPeriod,
       this.orbitalPeriod,
       this.diameter,
