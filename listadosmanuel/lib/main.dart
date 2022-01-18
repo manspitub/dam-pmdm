@@ -1,5 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:listadosmanuel/cartel_principal.dart';
+import 'package:listadosmanuel/models/personaje_response.dart';
+import 'package:listadosmanuel/personaje_portada.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -58,11 +63,25 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+    
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
-          Cartel()
+          Cartel(),
+          Container(
+            height: 110.0,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+
+              children:  <Widget>[
+                
+                PersonajePortada().build(context)
+               
+              ],
+            ),
+          )
         ],
       ),
     );

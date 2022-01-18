@@ -16,7 +16,11 @@ class Cartel extends StatelessWidget{
       children:  <Widget>[
         
         this.encabezado(),
-        this.pelis()
+        this.botonsitos(),
+        
+     
+        
+        
 
         
       ],
@@ -50,17 +54,28 @@ class Cartel extends StatelessWidget{
           ],
         );
   }
-  
-  Widget pelis() {
+
+  Widget botonsitos() {
     return Row(
+
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
       children: <Widget>[
-        ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (context, index){
-            return Text(items.elementAt(index).name);
-          },
-        )
+        Icon(Icons.check, color: Colors.white, ),
+        SizedBox(
+          height: 3.0,
+        ),
+        Text("Planet List", style: TextStyle(color: Colors.white),),
+        ButtonBar(children: [
+          Icon(Icons.info_rounded, color: Colors.white,),
+          Text("info", style: TextStyle(color: Colors.white),)
+        ],),
+        
+        Icon(Icons.tv, color: Colors.white),
+        Text("View on Tv", style: TextStyle(color: Colors.white, fontFamily: "Arial"),)
       ],
     );
   }
+  
+  
 }
