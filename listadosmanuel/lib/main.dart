@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:listadosmanuel/cartel_principal.dart';
 import 'package:listadosmanuel/models/personaje_response.dart';
-import 'package:listadosmanuel/personaje_portada.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -55,6 +54,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  late Future<List<Person>> items = fetchPeople();
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -70,14 +71,26 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
           Cartel(),
-          Container(
+          SizedBox(
             height: 110.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
 
               children:  <Widget>[
                 
-                PersonajePortada().build(context)
+                Center(child: FutureBuilder<List<Person>>(
+              future: items,
+              builder: (context, snapshot){
+                if(snapshot.hasData){
+                  return _personajeList(snapshot.data!);
+                } else if(snapshot.hasError){
+                  return Text('${snapshot.error}');
+                }
+
+                return const CircularProgressIndicator();
+              },
+            
+          ),)
                
               ],
             ),
@@ -86,4 +99,58 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  Future<List<Person>> fetchPeople() async {
+    final response = await http.get(Uri.parse('https://swapi.dev/api/people'));
+    if (response.statusCode == 200) {
+      return PeopleResponse.fromJson(jsonDecode(response.body)).results;
+    } else {
+      throw Exception('Failed to load people');
+    }
+  }
+   Widget _personajeItem(Person person, int index) {
+    String personId = person.url.split('/')[5];
+    String personName = person.name;
+    return Stack(
+      alignment: AlignmentDirectional.bottomCenter,
+      textDirection: TextDirection.rtl,
+      
+      children: <Widget>[
+        Container(
+          height: 110.0,
+          width: 110.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(110.0),
+            border: Border.all(
+              color: Colors.yellow,
+              width: 2.0
+            )
+          ),
+          child: ClipOval(
+            child: Image.network('http://starwars-visualguide.com/assets/img/characters/$personId.jpg', fit: BoxFit.cover,),
+          ),
+        ),
+        Text(personName, style: TextStyle(color: Colors.white, wordSpacing: 5, fontSize: 10),)
+      ],
+    );
+  }
+       Widget _personajeList(List<Person> peopleList) {
+    return SizedBox(
+      height: 270,
+      width: MediaQuery.of(context).size.width,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: peopleList.length,
+        itemBuilder: (context, index) {
+          return _personajeItem(peopleList.elementAt(index), index);
+        },
+      ),
+    );
+  }
+
+  
+
+
+
 }
