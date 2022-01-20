@@ -31,7 +31,7 @@ class Cartel extends StatelessWidget{
   Widget encabezado() {
     return  Stack(
           children: <Widget>[
-            Image.network("https://starwars-visualguide.com/assets/img/planets/4.jpg", height: 280, width: 300, fit: BoxFit.cover,),
+            Image.network("https://wallpaper.org.es/walls/2015/04/fondo-pantalla-star-wars-7.jpg", height: 280, width: 400, fit: BoxFit.cover,),
             Container(
               width: double.infinity,
               height: 300.0,
@@ -65,14 +65,14 @@ class Cartel extends StatelessWidget{
         SizedBox(
           height: 3.0,
         ),
-        Text("Planet List", style: TextStyle(color: Colors.white),),
+        Text("Personajes List", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
         ButtonBar(children: [
           Icon(Icons.info_rounded, color: Colors.white,),
-          Text("info", style: TextStyle(color: Colors.white),)
+          Text("info", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
         ],),
         
         Icon(Icons.tv, color: Colors.white),
-        Text("View on Tv", style: TextStyle(color: Colors.white, fontFamily: "Arial"),)
+        Text("View on Tv", style: TextStyle(color: Colors.white, fontFamily: "Arial", fontWeight: FontWeight.bold),)
       ],
     );
   }

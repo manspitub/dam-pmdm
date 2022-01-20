@@ -1,9 +1,12 @@
 import 'dart:convert';
+import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:listadosmanuel/cartel_principal.dart';
+import 'package:listadosmanuel/imgBottom.dart';
 import 'package:listadosmanuel/models/personaje_response.dart';
 import 'package:http/http.dart' as http;
+import 'package:listadosmanuel/nav_bar_superior.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,10 +70,39 @@ class _MyHomePageState extends State<MyHomePage> {
 
     
     return Scaffold(
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+             DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.black
+              ),
+              child: Text("Star Wars", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+              
+               ),
+               ListTile(
+
+                 title: Text("Planetas", style: TextStyle(color: Colors.black),),
+                 onTap: () {
+                   
+                 },
+               ),
+               ListTile(
+                 title: Text("Personajes", style: TextStyle(color: Colors.black),),
+                 onTap: () {
+                   Navigator.pop(context);
+                 }
+               )
+          ],
+        ),
+      ),
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
           Cartel(),
+          ImgBottom(),
           SizedBox(
             height: 110.0,
             child: ListView(
@@ -113,13 +145,19 @@ class _MyHomePageState extends State<MyHomePage> {
     String personName = person.name;
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
-      textDirection: TextDirection.rtl,
+      
+      
       
       children: <Widget>[
         Container(
+
+        
+          margin: EdgeInsets.only(left: 20, bottom: 20, right: 20),
           height: 110.0,
           width: 110.0,
+          
           decoration: BoxDecoration(
+          
             borderRadius: BorderRadius.circular(110.0),
             border: Border.all(
               color: Colors.yellow,
@@ -127,17 +165,19 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ),
           child: ClipOval(
+            
             child: Image.network('http://starwars-visualguide.com/assets/img/characters/$personId.jpg', fit: BoxFit.cover,),
           ),
         ),
-        Text(personName, style: TextStyle(color: Colors.white, wordSpacing: 5, fontSize: 10),)
+        Text(personName, style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),)
       ],
     );
   }
        Widget _personajeList(List<Person> peopleList) {
     return SizedBox(
+
       height: 270,
-      width: MediaQuery.of(context).size.width,
+     
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
