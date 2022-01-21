@@ -1,12 +1,11 @@
 import 'dart:convert';
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
 import 'package:listadosmanuel/cartel_principal.dart';
 import 'package:listadosmanuel/imgBottom.dart';
 import 'package:listadosmanuel/models/personaje_response.dart';
 import 'package:http/http.dart' as http;
-import 'package:listadosmanuel/nav_bar_superior.dart';
 
 void main() {
   runApp(const MyApp());
@@ -99,16 +98,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       backgroundColor: Colors.black,
-      body: Column(
+      body: ListView(
         children: <Widget>[
           Cartel(),
-          ImgBottom(),
+          
           SizedBox(
             height: 110.0,
             child: ListView(
               scrollDirection: Axis.horizontal,
 
               children:  <Widget>[
+
+                Text("Personajes", style: TextStyle(color: Colors.white),),
                 
                 Center(child: FutureBuilder<List<Person>>(
               future: items,
@@ -121,12 +122,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 return const CircularProgressIndicator();
               },
+
+
             
-          ),)
+          ),),
+          
                
               ],
             ),
-          )
+          ),
+          Center(child: FutureBuilder<List<Person>>(
+              future: items,
+              builder: (context, snapshot){
+                if(snapshot.hasData){
+                  return _personajeList(snapshot.data!);
+                } else if(snapshot.hasError){
+                  return Text('${snapshot.error}');
+                }
+
+                return const CircularProgressIndicator();
+              },
+
+
+            
+          ),)
         ],
       ),
     );
@@ -188,6 +207,58 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+   Widget _planetList(List<Person> peopleList) {
+    return SizedBox(
+
+      height: 270,
+     
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: peopleList.length,
+        itemBuilder: (context, index) {
+          return _personajeItem(peopleList.elementAt(index), index);
+        },
+      ),
+    );
+  }
+
+  Widget _planetItem(Person person, int index) {
+    String planetId = person.url.split('/')[5];
+    String personName = person.name;
+    return Stack(
+      alignment: AlignmentDirectional.bottomCenter,
+      
+      
+      
+      children: <Widget>[
+        Container(
+
+        
+          margin: EdgeInsets.only(left: 20, bottom: 20, right: 20),
+          height: 110.0,
+          width: 110.0,
+          
+          decoration: BoxDecoration(
+          
+            borderRadius: BorderRadius.circular(110.0),
+            border: Border.all(
+              color: Colors.yellow,
+              width: 2.0
+            )
+          ),
+          child: ClipOval(
+            
+            child: Image.network('http://starwars-visualguide.com/assets/img/characters/$personId.jpg', fit: BoxFit.cover,),
+          ),
+        ),
+        Text(personName, style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),)
+      ],
+    );
+  }
+
+
 
   
 
