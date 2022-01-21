@@ -6,6 +6,7 @@ import 'package:listadosmanuel/cartel_principal.dart';
 import 'package:listadosmanuel/imgBottom.dart';
 import 'package:listadosmanuel/models/personaje_response.dart';
 import 'package:http/http.dart' as http;
+import 'package:listadosmanuel/models/planets_response.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,6 +58,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   late Future<List<Person>> items = fetchPeople();
+
+  late Future<List<Planetas>> elementos = fetchPlanets();
 
   @override
   Widget build(BuildContext context) {
@@ -131,11 +134,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          Center(child: FutureBuilder<List<Person>>(
-              future: items,
+          Center(child: FutureBuilder<List<Planetas>>(
+              future: elementos,
               builder: (context, snapshot){
                 if(snapshot.hasData){
-                  return _personajeList(snapshot.data!);
+                  return _planetList(snapshot.data!);
                 } else if(snapshot.hasError){
                   return Text('${snapshot.error}');
                 }
@@ -161,6 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
    Widget _personajeItem(Person person, int index) {
     String personId = person.url.split('/')[5];
+    
     String personName = person.name;
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
@@ -208,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-   Widget _planetList(List<Person> peopleList) {
+   Widget _planetList(List<Planetas> peopleList) {
     return SizedBox(
 
       height: 270,
@@ -218,15 +222,15 @@ class _MyHomePageState extends State<MyHomePage> {
         scrollDirection: Axis.horizontal,
         itemCount: peopleList.length,
         itemBuilder: (context, index) {
-          return _personajeItem(peopleList.elementAt(index), index);
+          return _planetItem(peopleList.elementAt(index), index);
         },
       ),
     );
   }
 
-  Widget _planetItem(Person person, int index) {
-    String planetId = person.url.split('/')[5];
-    String personName = person.name;
+  Widget _planetItem(Planetas planet, int index) {
+    String planetId = planet.url.split('/')[5];
+    String personName = planet.name;
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       
@@ -250,7 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           child: ClipOval(
             
-            child: Image.network('http://starwars-visualguide.com/assets/img/characters/$personId.jpg', fit: BoxFit.cover,),
+            child: Image.network('https://starwars-visualguide.com/assets/img/planets/$planetId.jpg', fit: BoxFit.cover,),
           ),
         ),
         Text(personName, style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),)
@@ -258,10 +262,21 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Future<List<Planetas>> fetchPlanets() async {
+    final response = await http.get(Uri.parse('https://swapi.dev/api/planets'));
+    if (response.statusCode == 200) {
+      return PlanetasResponse.fromJson(jsonDecode(response.body)).results;
+    } else {
+      throw Exception('Failed to load planets');
+    }
+
+
+
 
 
   
 
 
 
+}
 }

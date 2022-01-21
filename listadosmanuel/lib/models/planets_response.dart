@@ -1,68 +1,65 @@
-class PlanetsResponse {
-  int? count;
-  String? next;
-  Null? previous;
-  List<Planets>? results;
-
-  PlanetsResponse({this.count, this.next, this.previous, this.results});
-
-  PlanetsResponse.fromJson(Map<String, dynamic> json) {
+class PlanetasResponse {
+  PlanetasResponse({
+    required this.count,
+    required this.next,
+     this.previous,
+    required this.results,
+  });
+  late final int count;
+  late final String next;
+  late final Null previous;
+  late final List<Planetas> results;
+  
+  PlanetasResponse.fromJson(Map<String, dynamic> json){
     count = json['count'];
     next = json['next'];
-    previous = json['previous'];
-    if (json['results'] != null) {
-      results = <Planets>[];
-      json['results'].forEach((v) {
-        results!.add(new Planets.fromJson(v));
-      });
-    }
+    previous = null;
+    results = List.from(json['results']).map((e)=>Planetas.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['count'] = this.count;
-    data['next'] = this.next;
-    data['previous'] = this.previous;
-    if (this.results != null) {
-      data['results'] = this.results!.map((v) => v.toJson()).toList();
-    }
-    return data;
+    final _data = <String, dynamic>{};
+    _data['count'] = count;
+    _data['next'] = next;
+    _data['previous'] = previous;
+    _data['results'] = results.map((e)=>e.toJson()).toList();
+    return _data;
   }
 }
 
-class Planets {
- late final String name;
-  String? rotationPeriod;
-  String? orbitalPeriod;
-  String? diameter;
-  String? climate;
-  String? gravity;
-  String? terrain;
-  String? surfaceWater;
-  String? population;
-  List<String>? residents;
-  List<String>? films;
-  String? created;
-  String? edited;
-  String? url;
-
-  Planets(
-      {required this.name,
-      this.rotationPeriod,
-      this.orbitalPeriod,
-      this.diameter,
-      this.climate,
-      this.gravity,
-      this.terrain,
-      this.surfaceWater,
-      this.population,
-      this.residents,
-      this.films,
-      this.created,
-      this.edited,
-      this.url});
-
-  Planets.fromJson(Map<String, dynamic> json) {
+class Planetas {
+  Planetas({
+    required this.name,
+    required this.rotationPeriod,
+    required this.orbitalPeriod,
+    required this.diameter,
+    required this.climate,
+    required this.gravity,
+    required this.terrain,
+    required this.surfaceWater,
+    required this.population,
+    required this.residents,
+    required this.films,
+    required this.created,
+    required this.edited,
+    required this.url,
+  });
+  late final String name;
+  late final String rotationPeriod;
+  late final String orbitalPeriod;
+  late final String diameter;
+  late final String climate;
+  late final String gravity;
+  late final String terrain;
+  late final String surfaceWater;
+  late final String population;
+  late final List<String> residents;
+  late final List<String> films;
+  late final String created;
+  late final String edited;
+  late final String url;
+  
+  Planetas.fromJson(Map<String, dynamic> json){
     name = json['name'];
     rotationPeriod = json['rotation_period'];
     orbitalPeriod = json['orbital_period'];
@@ -72,29 +69,29 @@ class Planets {
     terrain = json['terrain'];
     surfaceWater = json['surface_water'];
     population = json['population'];
-    residents = json['residents'].cast<String>();
-    films = json['films'].cast<String>();
+    residents = List.castFrom<dynamic, String>(json['residents']);
+    films = List.castFrom<dynamic, String>(json['films']);
     created = json['created'];
     edited = json['edited'];
     url = json['url'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['rotation_period'] = this.rotationPeriod;
-    data['orbital_period'] = this.orbitalPeriod;
-    data['diameter'] = this.diameter;
-    data['climate'] = this.climate;
-    data['gravity'] = this.gravity;
-    data['terrain'] = this.terrain;
-    data['surface_water'] = this.surfaceWater;
-    data['population'] = this.population;
-    data['residents'] = this.residents;
-    data['films'] = this.films;
-    data['created'] = this.created;
-    data['edited'] = this.edited;
-    data['url'] = this.url;
-    return data;
+    final _data = <String, dynamic>{};
+    _data['name'] = name;
+    _data['rotation_period'] = rotationPeriod;
+    _data['orbital_period'] = orbitalPeriod;
+    _data['diameter'] = diameter;
+    _data['climate'] = climate;
+    _data['gravity'] = gravity;
+    _data['terrain'] = terrain;
+    _data['surface_water'] = surfaceWater;
+    _data['population'] = population;
+    _data['residents'] = residents;
+    _data['films'] = films;
+    _data['created'] = created;
+    _data['edited'] = edited;
+    _data['url'] = url;
+    return _data;
   }
 }
