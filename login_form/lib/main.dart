@@ -81,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
 ),
  Container(
               height: 300,
-              width: 360,
-              margin: EdgeInsets.all(10),
+              width: 420,
+              margin: EdgeInsets.all(30),
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -107,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Center(
     child: Container(
       width: 250,
-      margin: EdgeInsets.only(top: 200, left: 40,),
-      child: Text("Discover your Dream job Here", style: TextStyle(color: Colors.black, decoration: TextDecoration.none, fontSize: 25, fontWeight: FontWeight.bold),),
+      margin: EdgeInsets.only(top: 170, left: 40,),
+      child: Text("Discover your Dream job Here", style: TextStyle(color: Colors.black, decoration: TextDecoration.none, fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Arial'),),
     ),
 
 
@@ -118,41 +118,49 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Container(
       width: 290,
       margin: EdgeInsets.only(top: 320, left: 30,),
-      child: Text("Explore all the most exciting job rules based on your  interest And study mayor", style: TextStyle(color: Colors.grey[700], decoration: TextDecoration.none, fontSize: 15, fontWeight: FontWeight.bold, fontFamily: 'Arial'),),
+      child: Text("Explore all the most exciting job rules based on your  interest And study mayor", style: TextStyle(color: Colors.grey[500], decoration: TextDecoration.none, fontSize: 15, fontWeight: FontWeight.bold,  fontFamily: 'Arial'),),
     ),
     ),
 
     Container(
-  margin: EdgeInsets.only(top: 500, left: 40),
+  margin: EdgeInsets.only(top: 700, left: 60),
   width: 300,
   height: 50,
   alignment: Alignment.centerLeft,
   decoration: BoxDecoration(
-    color: Colors.grey[200], //blue
+    color: Colors.grey[200], 
     borderRadius: BorderRadius.circular(45),
 
   ),
+
+
+  
   child: Container(
-    width: 210,
+    width: 170,
     height: 90,
     decoration: BoxDecoration(
       color: Colors.white, //light blue
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(45),
-        bottomLeft: Radius.circular(45),
+        topLeft: Radius.circular(15),
+        bottomLeft: Radius.circular(15),
+        topRight: Radius.circular(15),
+        bottomRight: Radius.circular(15)
       ),
     ),
     alignment: Alignment.center,
+    
     child: Text(
-      'Challenge',
+      'Register',
       style: TextStyle(
-        fontSize: 14,
+        fontSize: 20,
         color: Colors.black,
         decoration: TextDecoration.none 
       ),
     ),
+    
   ),
-)
+
+),
   ],
 
 
