@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({ Key? key }) : super(key: key);
@@ -9,4 +9,4 @@ class RegisterPage extends StatelessWidget {
       
     );
   }
-}
+}*/

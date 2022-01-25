@@ -66,21 +66,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     
                     
-                    LogInButton(
-                      btnText: 'Log in',
-                        onbtnPressed:(){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginPage()));
-                        }, key: null, 
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    LogInButton(
-                      btnText: 'Create Account',
-                        onbtnPressed:(){
-                          //Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
-                        }, 
-                    ),
+                      RoundedButton(
+                      btnText: 'LOG IN',
+                      onBtnPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()));
+                      }),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  RoundedButton(
+                     btnText: 'Create account',
+                      onBtnPressed: () {
+                       /* Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => RegistrationScreen()));
+                      */}),
 
                   
                 ],
