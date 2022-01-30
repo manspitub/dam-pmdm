@@ -66,7 +66,6 @@ class Upcoming {
     required this.releaseDate,
     required this.title,
     required this.video,
-    required this.voteAverage,
     required this.voteCount,
   });
   late final bool adult;
@@ -81,7 +80,6 @@ class Upcoming {
   late final String releaseDate;
   late final String title;
   late final bool video;
-  late final double? voteAverage;
   late final int voteCount;
   
   Upcoming.fromJson(Map<String, dynamic> json){
@@ -97,7 +95,6 @@ class Upcoming {
     releaseDate = json['release_date'];
     title = json['title'];
     video = json['video'];
-    voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
   }
 
@@ -115,7 +112,6 @@ class Upcoming {
     _data['release_date'] = releaseDate;
     _data['title'] = title;
     _data['video'] = video;
-    _data['vote_average'] = voteAverage;
     _data['vote_count'] = voteCount;
     return _data;
   }

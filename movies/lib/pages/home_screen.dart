@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:movies/models/upcoming.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:movies/services/api_service.dart';
 import 'package:http/http.dart' as http;
 
@@ -36,97 +36,109 @@ class HomeScreen extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          SizedBox(
-            height: 110.0,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text('Upcoming Movies', style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold,
+              ),),
+              FloatingActionButton(
+                hoverColor: Colors.blue,
+                backgroundColor: Colors.black26,
+                child: Text('View All', textAlign: TextAlign.center,),
+                onPressed: () {}),
+            ]),
 
-              children: <Widget>[
-                Text("Upcoming movies", style: TextStyle(color: Colors.black),),
+            SizedBox(
+              height: 300,
+              child: ListView(
+                padding: EdgeInsets.all(10.0),
+                scrollDirection: Axis.horizontal,
 
-                Center(
-                  child: FutureBuilder<List<Upcoming>>(
-                    future: items,
-                    builder: (context, snapshot){
-                      if(snapshot.hasData){
-                        return _buildBody(context, snapshot.data!);
-                      } else if(snapshot.hasError){
-                        return Text('${snapshot.error}');
-                      }
+                children: <Widget>[
 
-                      return const CircularProgressIndicator();
-                    },
-                  ))
-              ],
+                  Padding(padding: const EdgeInsets.all(10.0),),
+
+                  Center(child: FutureBuilder<List<Upcoming>>(
+              future: items,
+              builder: (context, snapshot){
+                if(snapshot.hasData){
+                  return _movieList(snapshot.data!);
+                } else if(snapshot.hasError){
+                  return Text('${snapshot.error}');
+                }
+
+                return const CircularProgressIndicator();
+              },)
+                  )],
+              ),
+              
             ),
-          ),
+            Container(
+              padding: EdgeInsets.all(10),
+            )
+                
+                  
+
+                
+
+                    
+
+                    
+
+                      
+                    
+
+                     
+                  
+                  
+                
+            ],
           
-        ],
-      )
+          
+
+        
+      ),
     );
       
     
   }
 
-  Widget _buildBody(BuildContext context, List<Upcoming> movies){
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints){
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListView.builder(
-                      itemCount: movies.length,
-                      itemBuilder: (context, index){
-                        return _movieItem(movies.elementAt(index), index); 
-                      } 
-                        )
-                  ],
-                )
-              ],
-            ),
-          ),
-        );
-      }
-      );
+  Widget _movieList( List<Upcoming> movies){
+    return SizedBox(
+      
+      height: 400,
+      child: ListView.builder(
+        padding: EdgeInsets.all(10.0),
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: movies.length,
+        itemBuilder: (context, index){
+        
+        return _movieItem(movies.elementAt(index), index);
+      }),
+    );
   }
 
   Widget _movieItem(Upcoming movie, int index){
-    return Stack(
-      alignment: AlignmentDirectional.bottomCenter,
-      children: <Widget>[
-        ClipRRect(
-          child: Image.network('https://image.tmdb.org/t/p/original/${movie.backdropPath}'),
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-
-          ),
-        ),
-        Padding(padding: EdgeInsets.only(
-          bottom: 15,
-          left: 15,
-        ),
-        child: Text(movie.title.toUpperCase(), 
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          fontFamily: 'muli'
-        ),
-        overflow: TextOverflow.ellipsis,
-        ),
-
-
-        ),
-        
-      ],
-    );
+     return Container(
+       margin: EdgeInsets.all(10.0),
+       padding: const EdgeInsets.all(10.0),
+       alignment: AlignmentDirectional.bottomCenter,
+       height: 300,
+       width: 160,
+       decoration: BoxDecoration(
+         borderRadius: BorderRadius.circular(5),
+         image: DecorationImage(
+           fit: BoxFit.cover,
+           image: NetworkImage(
+             'https://image.tmdb.org/t/p/original/${movie.backdropPath}'
+           ),
+         )
+       ),
+       child: Text(movie.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),textAlign: TextAlign.center,),
+     );
+     
   }
 
   final String baseUrl = 'https://api.themovie.org/3';
