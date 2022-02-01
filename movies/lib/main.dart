@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies/pages/home_screen.dart';
+import 'package:movies/pages/popular_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,13 +35,49 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   
+  int _selected = 0;
+
+  List<Widget> _widget = <Widget>[
+    HomeScreen(),
+    PopularScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selected = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: _widget.elementAt(_selected),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.grey[800],
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.upcoming),
+            label: 'Upcoming',
+          
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.movie_sharp),
+            label: 'Popular movies',
+            
+            
+          ),
+          
+
+        ],
+        currentIndex: _selected,
+        selectedItemColor: Colors.red,
+        onTap: _onItemTapped,
+      ),
     );
   }
+      
+    
+  
 }

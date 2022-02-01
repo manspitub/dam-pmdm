@@ -1,22 +1,19 @@
+
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movies/models/upcoming.dart';
-import 'package:movies/pages/popular_screen.dart';
-
-import 'package:movies/services/api_service.dart';
+import 'package:movies/models/popular.dart';
 import 'package:http/http.dart' as http;
 
-   
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({ Key? key }) : super(key: key);
+class PopularScreen extends StatelessWidget {
+  const PopularScreen({ Key? key }) : super(key: key);
 
   
 
   @override
   Widget build(BuildContext context) {
-    late Future<List<Upcoming>> items = getUpcomingMovies();
+    late Future<List<Popular>> items = getPopularMovies();
 
  
     
@@ -57,7 +54,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(padding: EdgeInsets.all(30)),
-              Text('Upcoming Movies', style: TextStyle(
+              Text('Popular Movies', style: TextStyle(
                 color: Colors.white,
                 fontSize: 30, fontWeight: FontWeight.bold,
               ),),
@@ -78,7 +75,7 @@ class HomeScreen extends StatelessWidget {
 
                   Padding(padding: const EdgeInsets.all(10.0),),
 
-                  Center(child: FutureBuilder<List<Upcoming>>(
+                  Center(child: FutureBuilder<List<Popular>>(
               future: items,
               builder: (context, snapshot){
                 if(snapshot.hasData){
@@ -125,7 +122,7 @@ class HomeScreen extends StatelessWidget {
     
   }
 
-  Widget _movieList( List<Upcoming> movies){
+  Widget _movieList( List<Popular> movies){
     return SizedBox(
       
       height: 400,
@@ -141,7 +138,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _movieItem(Upcoming movie, int index){
+  Widget _movieItem(Popular movie, int index){
      return Stack(
        
        alignment: AlignmentDirectional.bottomEnd,
@@ -186,11 +183,11 @@ class HomeScreen extends StatelessWidget {
   final String baseUrl = 'https://api.themovie.org/3';
   final String apiKey = '6f3f957d9d8dc6a98fed68a333b8209c';
 
-  Future<List<Upcoming>> getUpcomingMovies() async {
+  Future<List<Popular>> getPopularMovies() async {
     
-      final response = await http.get(Uri.parse('https://api.themoviedb.org/3/movie/upcoming?api_key=$apiKey&language=en-US&page=1'));
+      final response = await http.get(Uri.parse('https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=en-US&page=1'));
        if (response.statusCode == 200) {
-      return UpcomingResponse.fromJson(jsonDecode(response.body)).results;
+      return PopularResponse.fromJson(jsonDecode(response.body)).results;
     } else {
       throw Exception('Failed to load people');
     }
