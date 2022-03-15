@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             padding: EdgeInsets.only(left: 20, right: 10),
 
-            child: Text('Most popular Actors all over the world', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),textAlign: TextAlign.left,),
+            child: Text('Most popular Actors all over the world', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),textAlign: TextAlign.left,),
           ),
 
         ),
@@ -111,7 +111,7 @@ class HomePage extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             padding: EdgeInsets.only(left: 20, right: 10),
 
-            child: Text('March 2020', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10, color: Colors.grey[600]),textAlign: TextAlign.left,),
+            child: Text('March 2020', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.grey[600]),textAlign: TextAlign.left,),
           ),
           
         ),
@@ -152,7 +152,7 @@ Future<List<Popular>> fetchPopular() async {
 
 Widget popularList(List<Popular> popular) {
   return SizedBox(
-    height: 300,
+    height: 500,
     child: ListView.builder(
         itemCount: popular.length,
         shrinkWrap: true,
@@ -170,12 +170,14 @@ Widget popularItem(Popular popular, int index, BuildContext context) {
   return Container(
     
       child: Padding(
+
         
           padding: EdgeInsets.all(3),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(140),
+                borderRadius: BorderRadius.circular(120),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.5),
@@ -185,12 +187,12 @@ Widget popularItem(Popular popular, int index, BuildContext context) {
                   ),
                 ],
               ),
-              child: CircleAvatar(
+              child: ClipRRect(
 
-              
-                radius: 97,
-                backgroundImage: NetworkImage(
-                    'https://image.tmdb.org/t/p/w500/${popular.profilePath}'),
+                borderRadius: BorderRadius.circular(100),
+                child: Image.network('https://image.tmdb.org/t/p/w500/${popular.profilePath}', width: 200,),
+                
+                
 
               ),
             ),
