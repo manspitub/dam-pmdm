@@ -10,7 +10,17 @@ class LuzModel {
 }
 
 final companiasLuz = [
-  LuzModel(name: 'Naturgy', price: 0.24, logo: 'naturgy.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
-  LuzModel(name: 'Endesa', price: 0.24, logo: 'naturgy.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
-  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'naturgy.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Naturgy', price: 0.50, logo: 'naturgy.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Endesa', price: 0.67, logo: 'naturgy.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.20, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.90, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+  LuzModel(name: 'Iberdrola', price: 0.24, logo: 'iberdrola.png', phone: '900100251', workTime: 'Llámanos de lunes a sábado - de 8:00h a 22:00h'),
+
 ];
