@@ -1,3 +1,4 @@
+   
 class LuzResponse {
   LuzResponse({
     required this.indicator,
@@ -39,7 +40,7 @@ class Indicator {
   late final List<Tiempo> tiempo;
   late final List<Geos> geos;
   late final String valuesUpdatedAt;
-  late final List<Values> values;
+  late final List<PrecioLuz> values;
   
   Indicator.fromJson(Map<String, dynamic> json){
     name = json['name'];
@@ -52,7 +53,7 @@ class Indicator {
     tiempo = List.from(json['tiempo']).map((e)=>Tiempo.fromJson(e)).toList();
     geos = List.from(json['geos']).map((e)=>Geos.fromJson(e)).toList();
     valuesUpdatedAt = json['values_updated_at'];
-    values = List.from(json['values']).map((e)=>Values.fromJson(e)).toList();
+    values = List.from(json['values']).map((e)=>PrecioLuz.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -135,8 +136,8 @@ class Geos {
   }
 }
 
-class Values {
-  Values({
+class PrecioLuz {
+  PrecioLuz({
     required this.value,
     required this.datetime,
     required this.datetimeUtc,
@@ -151,7 +152,7 @@ class Values {
   late final int geoId;
   late final String geoName;
   
-  Values.fromJson(Map<String, dynamic> json){
+  PrecioLuz.fromJson(Map<String, dynamic> json){
     value = json['value'];
     datetime = json['datetime'];
     datetimeUtc = json['datetime_utc'];
