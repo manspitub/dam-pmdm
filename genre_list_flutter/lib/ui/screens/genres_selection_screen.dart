@@ -17,6 +17,17 @@ class GenreSelectionScreen extends StatefulWidget {
 class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
   late GenreRepository genreRepository;
 
+  bool selected = false;
+
+  getIconGenre(Genres genres){
+    if(genres.id == 28){
+      return Icons.sports_kabaddi;
+    }
+    if(genres.id == 12){
+      
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -57,6 +68,7 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
   Widget _createGenreView(BuildContext context, List<Genres> genres) {
     final contentHeight = 4.0 * (MediaQuery.of(context).size.width / 2.4) / 3;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
           alignment: Alignment.center,
@@ -82,17 +94,15 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
         ),
         SizedBox(
           height: contentHeight,
-          child: ListView.separated(
+          child: GridView.builder(
             itemBuilder: (BuildContext context, int index) {
               return _createGenresViewItem(context, genres[index]);
             },
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => const VerticalDivider(
-              color: Colors.transparent,
-              width: 6.0,
-            ),
-            itemCount: genres.length,
+            scrollDirection: Axis.vertical,
+            
+            itemCount: genres.length, 
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
           ),
         ),
         ElevatedButton(
@@ -111,6 +121,29 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
   }
 
   Widget _createGenresViewItem(BuildContext context, Genres genres) {
-    return GridView.builder(gridDelegate: gridDelegate, itemBuilder: itemBuilder)
+    return Ink(
+      child: InkWell(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18.0),
+            color: selected ? Colors.blue : Colors.white),
+            padding:     
+                EdgeInsets.symmetric(horizontal: 20.0),
+            margin: EdgeInsets.only(right: 10, left: 15),
+            child: Row(
+              children: [
+                SizedBox(
+                  height: 200,
+                  child: ,
+                )
+              ],
+            )
+
+
+            
+          ),
+        ),
+      );
+    
   }
 }
