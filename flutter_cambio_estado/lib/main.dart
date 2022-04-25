@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:genre_list_flutter/ui/screens/genres_selection_screen.dart';
+import 'package:flutter_cambio_estado/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,11 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
+ 
         primarySwatch: Colors.blue,
       ),
-      home:  GenreSelectionScreen(),
+      home:  HomePage(),
     );
   }
 }
-
