@@ -10,9 +10,6 @@ import 'package:genre_list_flutter/ui/screens/genre_item.dart';
 import 'package:genre_list_flutter/ui/screens/genres_selected.dart';
 
 class GenreSelectionScreen extends StatefulWidget {
-
-
-
   @override
   State<GenreSelectionScreen> createState() => _GenreSelectionScreenState();
 }
@@ -25,18 +22,21 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
   bool _enabled = false;
   late List<int> idsSelected = [];
 
-   addToList(genreSelectedId){
+  addToList(genreSelectedId) {
     setState(() {
       idsSelected.add(genreSelectedId);
     });
   }
 
-  removeFromList(genreSelectedId){
+  removeFromList(genreSelectedId) {
     setState(() {
       idsSelected.remove(genreSelectedId);
     });
   }
 
+  selectAll(bool){
+    selected = true;
+  }
 
   String getIconGenre(Genres genres) {
     return "assets/${genres.id}.svg";
@@ -58,9 +58,9 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
   Widget build(BuildContext context) {
     var _onpressed;
     late bool isButtonActive;
-  if(_enabled) {
-    _onpressed;
-  }
+    if (_enabled) {
+      _onpressed;
+    }
     return BlocProvider(
       create: (context) {
         return GenreBloc(genreRepository)..add(FetchGenre());
@@ -111,17 +111,33 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                   ),
                 ),
               ),
+              TextButton(
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.focused))
+                      return Colors.red;
+                    return null; // Defer to the widget's default.
+                  }),
+                ),
+                onPressed:() => setState(() {
+
+                  selectAll(true);
+                }),
+                child: Text('Select All'),
+              )
             ],
           ),
         ),
         Container(
           margin: EdgeInsets.symmetric(vertical: 0),
-          height: 550,
+          height: 490,
           child: GridView.builder(
             addAutomaticKeepAlives: true,
             shrinkWrap: true,
-            itemBuilder: (BuildContext context, int index) {  
-              return GenreItem( genres[index], addToList, removeFromList );
+            itemBuilder: (BuildContext context, int index) {
+              return GenreItem(
+                   genres[index], addToList, removeFromList, );
             },
             padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20),
             scrollDirection: Axis.vertical,
@@ -148,19 +164,21 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                     RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ))),
-            onPressed: () =>  Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GenresSelected(idsSelected: idsSelected, ),
-                ),)
-        )],
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GenresSelected(
+                      idsSelected: idsSelected,
+                    ),
+                  ),
+                ))
+      ],
     );
   }
 
   Widget _createGenresViewItem(BuildContext context, Genres genres) {
     return Ink(
       child: InkWell(
-
         onTap: (() {
           setState(() {
             selected = !selected;
@@ -169,7 +187,6 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
         borderRadius: BorderRadius.circular(25),
         child: Container(
             decoration: BoxDecoration(
-                
                 borderRadius: BorderRadius.circular(18.0),
                 color: selected ? Colors.blue : Colors.white),
             padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -186,8 +203,9 @@ class _GenreSelectionScreenState extends State<GenreSelectionScreen> {
                 ),
                 Text(
                   genres.name,
-                  style:  TextStyle(
-                      color: selected ? Colors.white : Colors.blue, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: selected ? Colors.white : Colors.blue,
+                      fontWeight: FontWeight.bold),
                 )
               ],
             )),

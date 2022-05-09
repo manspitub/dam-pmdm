@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genre_list_flutter/ui/screens/genres_selection_screen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }

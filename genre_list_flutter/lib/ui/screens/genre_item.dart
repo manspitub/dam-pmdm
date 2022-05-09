@@ -6,8 +6,9 @@ class GenreItem extends StatefulWidget {
   final Genres genres;
   Function(int) addToList;
   Function(int) removeFromList;
+  Function(bool) selectAll;
 
-  GenreItem(this.genres, this.addToList, this.removeFromList);
+  GenreItem( this.genres, this.addToList, this.removeFromList, this.selectAll);
 
   @override
   State<GenreItem> createState() => _GenreItemState();
@@ -25,6 +26,9 @@ class _GenreItemState extends State<GenreItem> {
     super.initState();
     setState(() {
       selected = false;
+      if(widget.selectAll){
+        selected = true;
+      }
     });
   }
 
@@ -42,6 +46,7 @@ class _GenreItemState extends State<GenreItem> {
             } else {
               widget.removeFromList(widget.genres.id);
             }
+         
           });
         }),
         borderRadius: BorderRadius.circular(25),
