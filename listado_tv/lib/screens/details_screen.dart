@@ -16,59 +16,88 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  late Future<SerieResponse> serie =
-      SerieRepositoryImpl().fetchSerie(widget.id);
+  final _serieData = SerieRepositoryImpl();
+  final _serieImageData = SerieImageRepositoryImpl();
 
-  late Future<SerieImageResponse> serieImage =
-      SerieImageRepositoryImpl().fetchSerieImage(widget.id);
-  late Future<SerieVideos> serieVideo =
-      SerieVideosRepositoryImpl().fetchSerieVideos(widget.id);
+  late SerieResponse? _serie = null;
+  late SerieImageResponse? _serieImage = null;
 
-  late SerieResponse? _serieResponse = null;
-  late SerieImageResponse? _serieImageResponse = null;
-  late SerieVideos? _serieVideos = null;
+  @override
+  void initState() {
+    super.initState();
+    _init();
+  }
 
-  void init() async {
-    final serieResponse = await serie;
-    final serieImagen = await serieImage; 
-    final serieVideos = await serieVideo;
+  void _init() async {
+    final serieResponse = await _serieData.fetchSerie(widget.id);
+    final serieImageResponse = await _serieImageData.fetchSerieImage(widget.id);
+
     setState(() {
-      _serieResponse = serieResponse;
-      _serieImageResponse = serieImagen;
-      _serieVideos = serieVideos;
+      _serie = serieResponse;
+      _serieImage = serieImageResponse;
     });
   }
 
+  /*_getSerie(){
+    FutureBuilder<SerieResponse>(
+      future: serie,
+      builder: (context, snapshot){
+        if (snapshot.hasData){
+          return serie(context, snapshot.data!);
+        } else if(snapshot.hasError){
+            
+          return Text('${snapshot.error}');
+
+        }
+          return const CircularProgressIndicator();
+      },
+    );
+  }*/
+
   @override
   Widget build(BuildContext context) {
-    init();
-    return Scaffold(body: _serieView(context));
-  }
-
-  Widget _serieView(BuildContext context) {
-    return Column(children: [
+    return Scaffold(
+        body: Column(children: [
       Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(left: 20.0, right: 16.0),
-        height: 48.0,
-        child: Row(
-          children: [
+          alignment: Alignment.center,
+          padding: const EdgeInsets.only(left: 20.0, right: 16.0),
+          height: 48.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
             Expanded(
               flex: 1,
               child: Text(
-                _serieResponse!.name,
+                _serie!.name,
                 style: TextStyle(
                   color: Colors.red,
-                  fontSize: 16.0,
+                  fontSize: 30.0,
                   fontFamily: 'Muli',
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
+            Text(_serie!.firstAirDate), 
             const Icon(Icons.tv, color: Colors.blue),
-          ],
-        ),
-      ),
-    ]);
+          ])),
+          SizedBox(
+            height: 400,
+            child: ListView(
+              children: [
+
+                
+                
+              
+                
+    
+              
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+              scrollDirection: Axis.horizontal,
+             
+        
+            ),
+          ),
+
+    ]));
   }
 }

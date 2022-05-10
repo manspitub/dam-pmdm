@@ -181,7 +181,7 @@ class LastEpisodeToAir {
   late final String productionCode;
   late final int seasonNumber;
   late final Null stillPath;
-  late final int voteAverage;
+  late final double voteAverage;
   late final int voteCount;
   
   LastEpisodeToAir.fromJson(Map<String, dynamic> json){

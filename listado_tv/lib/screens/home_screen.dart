@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:listado_tv/models/serie.dart';
 import 'package:listado_tv/models/series.dart';
@@ -111,7 +113,7 @@ Widget _serieItem(Results peli, int index){
             borderRadius: BorderRadius.circular(8.0),
             child: InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailsScreen( id: peli.id,)));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>  DetailsScreen( id: peli.id,)));
               },
               child: CachedNetworkImage(
                 

@@ -29,7 +29,6 @@ class SeriesResponse {
 
 class Results {
   Results({
-    required this.backdropPath,
     required this.firstAirDate,
     required this.genreIds,
     required this.id,
@@ -40,7 +39,6 @@ class Results {
     required this.overview,
     required this.posterPath,
   });
-  late final String backdropPath;
   late final String firstAirDate;
   late final List<int> genreIds;
   late final int id;
@@ -52,7 +50,6 @@ class Results {
   late final String posterPath;
   
   Results.fromJson(Map<String, dynamic> json){
-    backdropPath = json['backdrop_path'];
     firstAirDate = json['first_air_date'];
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
     id = json['id'];
@@ -66,7 +63,6 @@ class Results {
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['backdrop_path'] = backdropPath;
     _data['first_air_date'] = firstAirDate;
     _data['genre_ids'] = genreIds;
     _data['id'] = id;
